@@ -12,7 +12,6 @@
       margin: 0;
       padding: 0;
       height: 100%;
-      overflow: hidden;
       background: #0f0f17;
     }
 
@@ -63,17 +62,28 @@
   </a>
 
   <script>
-    var configuration = {
-      spec: { url: '../openapi.json' },
+    // Calcula a URL absoluta do spec a partir da localização atual da página.
+    // Funciona em qualquer domínio ou base path (local ou GitHub Pages).
+    // Ex: /poc-mkdocs/api/scalar-ui.html → /poc-mkdocs/openapi.json
+    var parts = window.location.pathname.split('/');
+    parts.splice(-2);                                    // remove 'api' e 'scalar-ui.html'
+    var specUrl = window.location.origin + parts.join('/') + '/openapi.json';
+
+    // Cria o elemento <script id="api-reference"> que o Scalar CDN espera encontrar.
+    // DEVE estar no DOM antes do script do Scalar ser executado.
+    var ref = document.createElement('script');
+    ref.id = 'api-reference';
+    ref.setAttribute('data-url', specUrl);
+    ref.setAttribute('data-configuration', JSON.stringify({
       theme: 'purple',
       darkMode: true,
       layout: 'modern',
-      defaultHttpClient: {
-        targetKey: 'shell',
-        clientKey: 'curl',
-      },
-    }
+      defaultHttpClient: { targetKey: 'shell', clientKey: 'curl' },
+    }));
+    document.body.appendChild(ref);
   </script>
+
+  <!-- Scalar CDN: lê o <script id="api-reference"> criado acima e renderiza a UI -->
   <script src="https://cdn.jsdelivr.net/npm/@scalar/api-reference" crossorigin="anonymous"></script>
 </body>
 </html>
