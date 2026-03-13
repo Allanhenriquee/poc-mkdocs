@@ -1,0 +1,128 @@
+{% extends "main.html" %}
+
+{% block tabs %}
+{{ super() }}
+
+<div class="hero">
+  <div class="hero-bg">
+    <div class="hero-grid-overlay"></div>
+    <div class="hero-orb hero-orb--1"></div>
+    <div class="hero-orb hero-orb--2"></div>
+    <div class="hero-orb hero-orb--3"></div>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="hero-badge__dot"></span>
+      <span>v2.4.1 &mdash; Estável</span>
+    </div>
+
+    <h1 class="hero-title">
+      Documentação da<br>
+      <span class="gradient-text" id="typed-text">Plataforma</span>
+    </h1>
+
+    <p class="hero-subtitle">
+      Arquitetura orientada a eventos, APIs RESTful e guias operacionais
+      para a plataforma de pedidos e pagamentos.
+    </p>
+
+    <div class="hero-actions">
+      <a href="architecture/overview/" class="btn btn--primary">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Explorar Arquitetura
+      </a>
+      <a href="api/reference/" class="btn btn--secondary">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        Referência da API
+      </a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat__number" data-count="4">0</span>
+        <span class="hero-stat__label">Serviços</span>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <span class="hero-stat__number" data-count="12">0</span>
+        <span class="hero-stat__label">Endpoints</span>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <span class="hero-stat__number" data-count="99">0</span>
+        <span class="hero-stat__label">% Uptime</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="features-section">
+  <div class="features-header">
+    <span class="section-badge">Documentação</span>
+    <h2 class="features-title">Tudo que você precisa</h2>
+    <p class="features-subtitle">Uma plataforma robusta construída para escalar com autonomia e resiliência.</p>
+  </div>
+
+  <div class="features-grid">
+    <a href="architecture/overview/" class="feature-card fade-in">
+      <div class="feature-card__icon feature-card__icon--purple">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      </div>
+      <h3 class="feature-card__title">Arquitetura</h3>
+      <p class="feature-card__desc">Diagrama C4, fluxos de dados e decisões técnicas que guiam o sistema.</p>
+      <span class="feature-card__link">Ver arquitetura →</span>
+    </a>
+
+    <a href="architecture/adr-001-event-driven/" class="feature-card fade-in">
+      <div class="feature-card__icon feature-card__icon--cyan">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <h3 class="feature-card__title">Decisões (ADR)</h3>
+      <p class="feature-card__desc">Registro de decisões arquiteturais com contexto, trade-offs e consequências.</p>
+      <span class="feature-card__link">Ver ADRs →</span>
+    </a>
+
+    <a href="api/reference/" class="feature-card fade-in">
+      <div class="feature-card__icon feature-card__icon--green">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      </div>
+      <h3 class="feature-card__title">Referência da API</h3>
+      <p class="feature-card__desc">Endpoints REST, contratos, status codes e exemplos de requisição e resposta.</p>
+      <span class="feature-card__link">Ver API →</span>
+    </a>
+
+    <a href="guides/local-setup/" class="feature-card fade-in">
+      <div class="feature-card__icon feature-card__icon--orange">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+      </div>
+      <h3 class="feature-card__title">Guia de Setup</h3>
+      <p class="feature-card__desc">Configure o ambiente local com Docker, migrações e todos os serviços em minutos.</p>
+      <span class="feature-card__link">Ver guia →</span>
+    </a>
+  </div>
+</div>
+
+<div class="stack-section fade-in">
+  <div class="features-header">
+    <span class="section-badge">Stack Técnica</span>
+    <h2 class="features-title">Construído com</h2>
+  </div>
+  <div class="stack-grid">
+    <div class="stack-item">.NET 8</div>
+    <div class="stack-item">ASP.NET Core</div>
+    <div class="stack-item">EF Core 8</div>
+    <div class="stack-item">PostgreSQL 16</div>
+    <div class="stack-item">RabbitMQ</div>
+    <div class="stack-item">Azure Service Bus</div>
+    <div class="stack-item">Redis</div>
+    <div class="stack-item">OpenTelemetry</div>
+    <div class="stack-item">Docker</div>
+    <div class="stack-item">Kubernetes</div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block content %}{% endblock %}
+{% block footer %}{{ super() }}{% endblock %}
