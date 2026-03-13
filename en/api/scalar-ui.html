@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title>API Reference — Orders Platform</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background: #0f0f17;
+    }
+
+    .back-link {
+      position: fixed;
+      top: 12px;
+      right: 16px;
+      z-index: 10000;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 16px;
+      background: rgba(14, 14, 26, 0.9);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 9px;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: rgba(210, 210, 235, 0.9);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      box-shadow: 0 2px 14px rgba(0, 0, 0, 0.4);
+      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .back-link:hover {
+      background: rgba(28, 28, 52, 0.96);
+      border-color: rgba(96, 195, 255, 0.3);
+      color: #fff;
+    }
+
+    .back-link svg {
+      flex-shrink: 0;
+      opacity: 0.75;
+    }
+  </style>
+</head>
+<body>
+  <a class="back-link" href="../">
+    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13"
+         viewBox="0 0 24 24" fill="none" stroke="currentColor"
+         stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="15 18 9 12 15 6"/>
+    </svg>
+    Back to docs
+  </a>
+
+  <script>
+    var configuration = {
+      spec: { url: '../openapi.json' },
+      theme: 'purple',
+      darkMode: true,
+      layout: 'modern',
+      defaultHttpClient: {
+        targetKey: 'shell',
+        clientKey: 'curl',
+      },
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@scalar/api-reference" crossorigin="anonymous"></script>
+</body>
+</html>
