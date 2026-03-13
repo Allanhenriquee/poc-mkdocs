@@ -233,10 +233,12 @@
 .hero-title__animated {
   display: block;
   white-space: nowrap;
+  text-align: center;
 }
 
 .hero-title__static {
   display: block;
+  text-align: center;
 }
 
 .gradient-text {
