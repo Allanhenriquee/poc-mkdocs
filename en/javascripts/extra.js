@@ -174,18 +174,18 @@ function initParallax() {
 }
 
 /* ============================================================
-   Scalar API iframe — initialized on every navigation
+   API iframe helper — shared by Scalar and AsyncAPI pages
    ============================================================ */
 
-function initScalar() {
-  const frame = document.getElementById('scalar-frame');
+function initApiIframe(frameId, embedId, src) {
+  const frame = document.getElementById(frameId);
   if (!frame) return;
 
   if (!frame.src) {
-    frame.src = '../scalar-ui.html';
+    frame.src = src;
   }
 
-  const embed = document.getElementById('scalar-embed');
+  const embed = document.getElementById(embedId);
 
   function adjust() {
     const header = document.querySelector('[data-md-component="header"]');
@@ -200,6 +200,9 @@ function initScalar() {
   window.addEventListener('resize', _resizeFn);
 }
 
+function initScalar()   { initApiIframe('scalar-frame',   'scalar-embed',   '../scalar-ui.html');   }
+function initAsyncApi() { initApiIframe('asyncapi-frame', 'asyncapi-embed', '../asyncapi-ui.html'); }
+
 /* ============================================================
    Boot — called after every page navigation
    ============================================================ */
@@ -211,6 +214,7 @@ function boot() {
   initScrollAnimations();
   initParallax();
   initScalar();
+  initAsyncApi();
 }
 
 /* ============================================================

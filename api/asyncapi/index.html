@@ -12,11 +12,13 @@
         <meta name="author" content="Time de Engenharia">
       
       
-        <link rel="canonical" href="https://Allanhenriquee.github.io/poc-mkdocs/guides/local-setup/">
+        <link rel="canonical" href="https://Allanhenriquee.github.io/poc-mkdocs/api/asyncapi/">
       
       
-        <link rel="prev" href="../../api/asyncapi/">
+        <link rel="prev" href="../scalar/">
       
+      
+        <link rel="next" href="../../guides/local-setup/">
       
       
         
@@ -31,7 +33,7 @@
     
     
       
-        <title>Configuração Local - Plataforma de Pedidos</title>
+        <title>Eventos Assíncronos (AsyncAPI) - Plataforma de Pedidos</title>
       
     
     
@@ -83,11 +85,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#configuracao-do-ambiente-local" class="md-skip">
-          Pular para conteúdo
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -120,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Configuração Local
+              Eventos Assíncronos (AsyncAPI)
             
           </span>
         </div>
@@ -295,11 +292,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../api/reference/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../reference/" class="md-tabs__link">
           
   
   
@@ -315,13 +314,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../guides/local-setup/" class="md-tabs__link">
           
   
   
@@ -350,7 +347,9 @@
           
             
               
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -530,26 +529,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
@@ -567,7 +571,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -585,7 +589,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api/reference/" class="md-nav__link">
+      <a href="../reference/" class="md-nav__link">
         
   
   
@@ -613,7 +617,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api/scalar/" class="md-nav__link">
+      <a href="../scalar/" class="md-nav__link">
         
   
   
@@ -638,10 +642,17 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../api/asyncapi/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -657,6 +668,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -673,31 +685,26 @@
       
   
   
-    
   
   
-  
     
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
             
   
   
@@ -715,7 +722,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -730,37 +737,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Configuração Local
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../guides/local-setup/" class="md-nav__link">
         
   
   
@@ -776,125 +756,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Índice">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Índice
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#pre-requisitos" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Pré-requisitos
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#clonar-o-repositorio" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Clonar o repositório
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#subir-a-infraestrutura-com-docker" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Subir a infraestrutura com Docker
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#configurar-variaveis-de-ambiente" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Configurar variáveis de ambiente
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#rodar-as-migrations" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Rodar as migrations
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#iniciar-os-servicos" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Iniciar os serviços
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#verificar-que-esta-funcionando" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Verificar que está funcionando
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#rodar-os-testes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Rodar os testes
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#parar-o-ambiente" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Parar o ambiente
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -915,7 +776,9 @@
             
             
               
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -924,115 +787,6 @@
   
   
   
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Índice
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#pre-requisitos" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Pré-requisitos
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#clonar-o-repositorio" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Clonar o repositório
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#subir-a-infraestrutura-com-docker" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Subir a infraestrutura com Docker
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#configurar-variaveis-de-ambiente" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Configurar variáveis de ambiente
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#rodar-as-migrations" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Rodar as migrations
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#iniciar-os-servicos" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Iniciar os serviços
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#verificar-que-esta-funcionando" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Verificar que está funcionando
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#rodar-os-testes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Rodar os testes
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#parar-o-ambiente" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Parar o ambiente
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
   
 </nav>
                   </div>
@@ -1046,142 +800,43 @@
               <article class="md-content__inner md-typeset">
                 
                   
+  
+
 
 
   
   
 
 
-<h1 id="configuracao-do-ambiente-local">Configuração do Ambiente Local<a class="headerlink" href="#configuracao-do-ambiente-local" title="Permanent link">&para;</a></h1>
-<p>Este guia descreve como subir a plataforma localmente para desenvolvimento e testes.</p>
-<h2 id="pre-requisitos">Pré-requisitos<a class="headerlink" href="#pre-requisitos" title="Permanent link">&para;</a></h2>
-<ul>
-<li><a href="https://www.docker.com/products/docker-desktop/">Docker Desktop</a> 24+</li>
-<li><a href="https://dotnet.microsoft.com/download/dotnet/8.0">.NET SDK 8.0</a></li>
-<li><a href="https://git-scm.com/">Git</a></li>
-</ul>
-<h2 id="clonar-o-repositorio">Clonar o repositório<a class="headerlink" href="#clonar-o-repositorio" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/sua-org/orders-platform.git
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>orders-platform
-</code></pre></div>
-<h2 id="subir-a-infraestrutura-com-docker">Subir a infraestrutura com Docker<a class="headerlink" href="#subir-a-infraestrutura-com-docker" title="Permanent link">&para;</a></h2>
-<p>O repositório inclui um <code>docker-compose.yml</code> com todos os serviços de infraestrutura necessários:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
-</code></pre></div>
-<p>Isso sobe:</p>
-<table>
-<thead>
-<tr>
-<th>Serviço</th>
-<th>Porta local</th>
-<th>Descrição</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>PostgreSQL</td>
-<td>5432</td>
-<td>Banco de dados</td>
-</tr>
-<tr>
-<td>RabbitMQ</td>
-<td>5672</td>
-<td>Broker de mensagens</td>
-</tr>
-<tr>
-<td>RabbitMQ UI</td>
-<td>15672</td>
-<td>Painel de administração</td>
-</tr>
-<tr>
-<td>Redis</td>
-<td>6379</td>
-<td>Cache</td>
-</tr>
-<tr>
-<td>Seq</td>
-<td>5341 / 80</td>
-<td>Log viewer local</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition tip">
-<p class="admonition-title">Credenciais locais</p>
-<p>As credenciais padrão do RabbitMQ são <code>guest / guest</code>. O Seq não requer autenticação em ambiente local.</p>
+  <h1>Eventos (AsyncAPI)</h1>
+
+<style>
+  .md-content { padding: 0 !important; }
+  .md-content__inner {
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+  .asyncapi-embed {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 48px;
+    z-index: 1;
+    background: #f8fafc;
+  }
+  #asyncapi-frame {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+</style>
+
+<div class="asyncapi-embed" id="asyncapi-embed">
+  <iframe id="asyncapi-frame" title="Contratos de Eventos Assíncronos — Plataforma de Pedidos"></iframe>
 </div>
-<h2 id="configurar-variaveis-de-ambiente">Configurar variáveis de ambiente<a class="headerlink" href="#configurar-variaveis-de-ambiente" title="Permanent link">&para;</a></h2>
-<p>Copie o arquivo de exemplo:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>cp<span class="w"> </span>.env.example<span class="w"> </span>.env
-</code></pre></div>
-<p>O <code>.env</code> já vem pré-configurado para o ambiente local. Não é necessário alterar nada para rodar os serviços básicos.</p>
-<div class="admonition warning">
-<p class="admonition-title">Nunca suba o .env</p>
-<p>O arquivo <code>.env</code> está no <code>.gitignore</code>. Nunca comite credenciais ou segredos no repositório.</p>
-</div>
-<h2 id="rodar-as-migrations">Rodar as migrations<a class="headerlink" href="#rodar-as-migrations" title="Permanent link">&para;</a></h2>
-<p>Execute as migrations do Entity Framework para criar o schema:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>dotnet<span class="w"> </span>ef<span class="w"> </span>database<span class="w"> </span>update<span class="w"> </span>--project<span class="w"> </span>src/OrdersApi<span class="w"> </span>--startup-project<span class="w"> </span>src/OrdersApi
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>dotnet<span class="w"> </span>ef<span class="w"> </span>database<span class="w"> </span>update<span class="w"> </span>--project<span class="w"> </span>src/PaymentsService<span class="w"> </span>--startup-project<span class="w"> </span>src/PaymentsService
-</code></pre></div>
-<h2 id="iniciar-os-servicos">Iniciar os serviços<a class="headerlink" href="#iniciar-os-servicos" title="Permanent link">&para;</a></h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Todos de uma vez</label><label for="__tabbed_1_2">Individualmente</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>dotnet<span class="w"> </span>run<span class="w"> </span>--project<span class="w"> </span>src/OrdersApi<span class="w"> </span><span class="p">&amp;</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>dotnet<span class="w"> </span>run<span class="w"> </span>--project<span class="w"> </span>src/CatalogApi<span class="w"> </span><span class="p">&amp;</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>dotnet<span class="w"> </span>run<span class="w"> </span>--project<span class="w"> </span>src/PaymentsService<span class="w"> </span><span class="p">&amp;</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>dotnet<span class="w"> </span>run<span class="w"> </span>--project<span class="w"> </span>src/NotificationWorker
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Terminal 1</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>dotnet<span class="w"> </span>run<span class="w"> </span>--project<span class="w"> </span>src/OrdersApi
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># Terminal 2</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>dotnet<span class="w"> </span>run<span class="w"> </span>--project<span class="w"> </span>src/PaymentsService
-</code></pre></div>
-</div>
-</div>
-</div>
-<h2 id="verificar-que-esta-funcionando">Verificar que está funcionando<a class="headerlink" href="#verificar-que-esta-funcionando" title="Permanent link">&para;</a></h2>
-<p>Acesse o Swagger do <code>orders-api</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>http://localhost:5000/swagger
-</code></pre></div>
-<p>Você pode criar um pedido de teste via Swagger ou curl:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:5000/v1/orders<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer dev-token&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="s1">    &quot;customerId&quot;: &quot;3fa85f64-5717-4562-b3fc-2c963f66afa6&quot;,</span>
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="s1">    &quot;items&quot;: [{ &quot;productId&quot;: &quot;a1b2c3d4-0000-0000-0000-000000000001&quot;, &quot;quantity&quot;: 1 }],</span>
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="s1">    &quot;shippingAddress&quot;: {</span>
-<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="s1">      &quot;street&quot;: &quot;Rua Teste, 1&quot;,</span>
-<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="s1">      &quot;city&quot;: &quot;São Paulo&quot;,</span>
-<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="s1">      &quot;state&quot;: &quot;SP&quot;,</span>
-<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="s1">      &quot;zipCode&quot;: &quot;01310-100&quot;</span>
-<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="s1">    }</span>
-<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="s1">  }&#39;</span>
-</code></pre></div>
-<h2 id="rodar-os-testes">Rodar os testes<a class="headerlink" href="#rodar-os-testes" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Todos os testes</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>dotnet<span class="w"> </span><span class="nb">test</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># Apenas testes unitários</span>
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>dotnet<span class="w"> </span><span class="nb">test</span><span class="w"> </span>--filter<span class="w"> </span><span class="nv">Category</span><span class="o">=</span>Unit
-<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
-<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="c1"># Apenas testes de integração</span>
-<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>dotnet<span class="w"> </span><span class="nb">test</span><span class="w"> </span>--filter<span class="w"> </span><span class="nv">Category</span><span class="o">=</span>Integration
-</code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Testes de integração</p>
-<p>Os testes de integração requerem a infraestrutura Docker rodando. Certifique-se de executar <code>docker compose up -d</code> antes.</p>
-</div>
-<h2 id="parar-o-ambiente">Parar o ambiente<a class="headerlink" href="#parar-o-ambiente" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>down
-</code></pre></div>
-<p>Para remover também os volumes (apaga dados do banco):</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>down<span class="w"> </span>-v
-</code></pre></div>
 
 
 
@@ -1189,8 +844,13 @@
 
 
 
+  
+  
 
 
+
+
+  
 
 
 
@@ -1214,10 +874,12 @@
   
     
       
+        
+      
       <nav class="md-footer__inner md-grid" aria-label="Rodapé" >
         
           
-          <a href="../../api/asyncapi/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Eventos (AsyncAPI)">
+          <a href="../scalar/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Interativa (Scalar)">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1227,11 +889,27 @@
                 Anterior
               </span>
               <div class="md-ellipsis">
-                Eventos (AsyncAPI)
+                Interativa (Scalar)
               </div>
             </div>
           </a>
         
+        
+          
+          <a href="../../guides/local-setup/" class="md-footer__link md-footer__link--next" aria-label="Próximo: Configuração Local">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Próximo
+              </span>
+              <div class="md-ellipsis">
+                Configuração Local
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
         
       </nav>
     

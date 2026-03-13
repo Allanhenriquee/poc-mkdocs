@@ -1,0 +1,459 @@
+asyncapi: '2.6.0'
+
+info:
+  title: Plataforma de Pedidos — Eventos Assíncronos
+  version: '1.0.0'
+  description: |
+    Contratos de eventos assíncronos da plataforma de pedidos e pagamentos.
+
+    ## Modelo de Comunicação
+
+    A plataforma usa **mensageria AMQP** para desacoplar o processamento de pagamentos
+    do fluxo principal de pedidos. A **Orders API** publica eventos de ciclo de vida
+    e consome eventos do serviço de pagamentos.
+
+    ```
+    Cliente → POST /v1/orders → Orders API → [order.created] → Broker
+                                                                     ↓
+    Orders API ← [payment.processed / payment.failed] ← Payment Service
+    ```
+
+    ## Garantias de Entrega
+
+    - Entregas **at-least-once** — consumidores devem ser **idempotentes**
+    - Use `orderId` como chave de idempotência em todas as operações
+    - Todos os eventos incluem `correlationId` para rastreamento distribuído
+    - Mensagens são persistidas com `deliveryMode: 2` (durable)
+
+    ## Versionamento de Contratos
+
+    O campo `eventType` no header carrega o tipo e versão do evento (`order.created.v1`).
+    Mudanças breaking exigem nova versão; campos novos podem ser adicionados sem versionar.
+
+  contact:
+    name: Time de Engenharia
+    email: engineering@example.com
+
+defaultContentType: application/json
+
+servers:
+  production:
+    url: rabbitmq.prod.internal:5672
+    protocol: amqp
+    description: Broker AMQP de produção
+    security:
+      - user-password: []
+
+  development:
+    url: localhost:5672
+    protocol: amqp
+    description: Broker AMQP local (Docker Compose)
+
+channels:
+  orders.created:
+    description: |
+      Publicado imediatamente após um pedido ser aceito via `POST /v1/orders`.
+      O pagamento ainda **não foi processado** neste ponto — o status inicial é `Pending`.
+      Downstream services devem aguardar `payments.processed` para confirmar o pedido.
+    publish:
+      operationId: publishOrderCreated
+      summary: Pedido aceito para processamento assíncrono
+      tags:
+        - name: Pedidos
+      bindings:
+        amqp:
+          exchange: orders
+          routingKey: orders.created
+          deliveryMode: 2
+          mandatory: true
+      message:
+        $ref: '#/components/messages/OrderCreated'
+
+  orders.cancelled:
+    description: |
+      Publicado quando um pedido é cancelado via `DELETE /v1/orders/{orderId}`.
+      Apenas pedidos nos status `Pending` ou `Confirmed` podem ser cancelados.
+      Pedidos `Shipped` ou `Delivered` retornam `409 Conflict` e não geram evento.
+    publish:
+      operationId: publishOrderCancelled
+      summary: Pedido cancelado pelo cliente ou sistema
+      tags:
+        - name: Pedidos
+      bindings:
+        amqp:
+          exchange: orders
+          routingKey: orders.cancelled
+          deliveryMode: 2
+          mandatory: true
+      message:
+        $ref: '#/components/messages/OrderCancelled'
+
+  payments.processed:
+    description: |
+      Consumido do serviço de pagamentos quando o gateway aprova a transação.
+      Atualiza o status do pedido para `Confirmed` e registra o `paymentId`.
+    subscribe:
+      operationId: subscribePaymentProcessed
+      summary: Pagamento aprovado pelo gateway — atualiza pedido para Confirmed
+      tags:
+        - name: Pagamentos
+      bindings:
+        amqp:
+          exchange: payments
+          routingKey: payments.processed
+          ack: true
+      message:
+        $ref: '#/components/messages/PaymentProcessed'
+
+  payments.failed:
+    description: |
+      Consumido do serviço de pagamentos quando o gateway recusa a transação.
+      Atualiza o status do pedido para `PaymentFailed`.
+      O cliente pode tentar um novo pagamento ou o pedido será cancelado automaticamente.
+    subscribe:
+      operationId: subscribePaymentFailed
+      summary: Pagamento recusado pelo gateway — atualiza pedido para PaymentFailed
+      tags:
+        - name: Pagamentos
+      bindings:
+        amqp:
+          exchange: payments
+          routingKey: payments.failed
+          ack: true
+      message:
+        $ref: '#/components/messages/PaymentFailed'
+
+components:
+  messages:
+    OrderCreated:
+      name: OrderCreated
+      title: Pedido Criado
+      summary: Emitido quando um novo pedido entra no pipeline de processamento
+      contentType: application/json
+      headers:
+        type: object
+        required:
+          - correlationId
+          - eventType
+          - occurredAt
+        properties:
+          correlationId:
+            type: string
+            format: uuid
+            description: ID de correlação para rastreamento distribuído entre serviços
+            examples:
+              - a4b8c2d1-e5f6-7890-abcd-ef1234567890
+          eventType:
+            type: string
+            const: order.created.v1
+            description: Tipo e versão do evento — use para roteamento e parsing
+          occurredAt:
+            type: string
+            format: date-time
+            description: Timestamp UTC do momento em que o evento ocorreu
+      payload:
+        $ref: '#/components/schemas/OrderCreatedPayload'
+      examples:
+        - name: Pedido com um item
+          headers:
+            correlationId: a4b8c2d1-e5f6-7890-abcd-ef1234567890
+            eventType: order.created.v1
+            occurredAt: '2026-03-13T21:00:00Z'
+          payload:
+            orderId: 550e8400-e29b-41d4-a716-446655440000
+            customerId: 6ba7b810-9dad-11d1-80b4-00c04fd430c8
+            items:
+              - productId: 7c9e6679-7425-40de-944b-e07fc1f90ae7
+                productName: Notebook Pro 15
+                quantity: 1
+                unitPrice: 4999.90
+                subtotal: 4999.90
+            shippingAddress:
+              street: Av. Paulista, 1000
+              city: São Paulo
+              state: SP
+              zipCode: 01310-100
+            totalAmount: 4999.90
+
+    OrderCancelled:
+      name: OrderCancelled
+      title: Pedido Cancelado
+      summary: Emitido quando um pedido é cancelado pelo cliente
+      contentType: application/json
+      headers:
+        type: object
+        required:
+          - correlationId
+          - eventType
+          - occurredAt
+        properties:
+          correlationId:
+            type: string
+            format: uuid
+          eventType:
+            type: string
+            const: order.cancelled.v1
+          occurredAt:
+            type: string
+            format: date-time
+      payload:
+        $ref: '#/components/schemas/OrderCancelledPayload'
+      examples:
+        - name: Cancelamento por solicitação do cliente
+          headers:
+            correlationId: b5c9d3e2-f6a7-8901-bcde-f01234567890
+            eventType: order.cancelled.v1
+            occurredAt: '2026-03-13T21:30:00Z'
+          payload:
+            orderId: 550e8400-e29b-41d4-a716-446655440000
+            customerId: 6ba7b810-9dad-11d1-80b4-00c04fd430c8
+            reason: CustomerRequest
+            cancelledAt: '2026-03-13T21:30:00Z'
+
+    PaymentProcessed:
+      name: PaymentProcessed
+      title: Pagamento Processado
+      summary: Emitido pelo serviço de pagamentos quando o gateway aprova a transação
+      contentType: application/json
+      headers:
+        type: object
+        required:
+          - correlationId
+          - eventType
+          - occurredAt
+        properties:
+          correlationId:
+            type: string
+            format: uuid
+          eventType:
+            type: string
+            const: payment.processed.v1
+          occurredAt:
+            type: string
+            format: date-time
+      payload:
+        $ref: '#/components/schemas/PaymentProcessedPayload'
+      examples:
+        - name: Pagamento aprovado via Stripe
+          headers:
+            correlationId: a4b8c2d1-e5f6-7890-abcd-ef1234567890
+            eventType: payment.processed.v1
+            occurredAt: '2026-03-13T21:05:00Z'
+          payload:
+            orderId: 550e8400-e29b-41d4-a716-446655440000
+            paymentId: pi_3N8XkV2eZvKYlo2C1234abcd
+            amount: 4999.90
+            gateway: Stripe
+            processedAt: '2026-03-13T21:05:00Z'
+
+    PaymentFailed:
+      name: PaymentFailed
+      title: Pagamento Recusado
+      summary: Emitido pelo serviço de pagamentos quando o gateway recusa a transação
+      contentType: application/json
+      headers:
+        type: object
+        required:
+          - correlationId
+          - eventType
+          - occurredAt
+        properties:
+          correlationId:
+            type: string
+            format: uuid
+          eventType:
+            type: string
+            const: payment.failed.v1
+          occurredAt:
+            type: string
+            format: date-time
+      payload:
+        $ref: '#/components/schemas/PaymentFailedPayload'
+      examples:
+        - name: Cartão recusado por fundos insuficientes
+          headers:
+            correlationId: a4b8c2d1-e5f6-7890-abcd-ef1234567890
+            eventType: payment.failed.v1
+            occurredAt: '2026-03-13T21:05:00Z'
+          payload:
+            orderId: 550e8400-e29b-41d4-a716-446655440000
+            failureCode: InsufficientFunds
+            failureReason: O cartão não possui limite disponível para esta transação
+            attemptedAt: '2026-03-13T21:05:00Z'
+
+  schemas:
+    OrderCreatedPayload:
+      type: object
+      required:
+        - orderId
+        - customerId
+        - items
+        - shippingAddress
+        - totalAmount
+      properties:
+        orderId:
+          type: string
+          format: uuid
+          description: Identificador único do pedido
+        customerId:
+          type: string
+          format: uuid
+          description: Identificador do cliente que criou o pedido
+        items:
+          type: array
+          minItems: 1
+          description: Lista de itens do pedido
+          items:
+            $ref: '#/components/schemas/OrderItemPayload'
+        shippingAddress:
+          $ref: '#/components/schemas/AddressPayload'
+        totalAmount:
+          type: number
+          format: double
+          minimum: 0
+          description: Valor total calculado (soma dos subtotais)
+
+    OrderCancelledPayload:
+      type: object
+      required:
+        - orderId
+        - customerId
+        - reason
+        - cancelledAt
+      properties:
+        orderId:
+          type: string
+          format: uuid
+        customerId:
+          type: string
+          format: uuid
+        reason:
+          type: string
+          enum:
+            - CustomerRequest
+            - PaymentFailed
+            - OutOfStock
+            - SystemTimeout
+          description: Motivo do cancelamento
+        cancelledAt:
+          type: string
+          format: date-time
+          description: Timestamp UTC do cancelamento
+
+    PaymentProcessedPayload:
+      type: object
+      required:
+        - orderId
+        - paymentId
+        - amount
+        - gateway
+        - processedAt
+      properties:
+        orderId:
+          type: string
+          format: uuid
+        paymentId:
+          type: string
+          description: ID da transação retornado pelo gateway de pagamento
+          examples:
+            - pi_3N8XkV2eZvKYlo2C1234abcd
+        amount:
+          type: number
+          format: double
+          minimum: 0
+          description: Valor cobrado pelo gateway
+        gateway:
+          type: string
+          enum:
+            - Stripe
+            - PayPal
+            - PagBank
+          description: Gateway de pagamento utilizado
+        processedAt:
+          type: string
+          format: date-time
+          description: Timestamp UTC de quando o pagamento foi aprovado
+
+    PaymentFailedPayload:
+      type: object
+      required:
+        - orderId
+        - failureCode
+        - failureReason
+        - attemptedAt
+      properties:
+        orderId:
+          type: string
+          format: uuid
+        failureCode:
+          type: string
+          enum:
+            - InsufficientFunds
+            - CardDeclined
+            - Timeout
+            - InvalidCard
+            - FraudSuspicion
+          description: Código de falha retornado pelo gateway
+        failureReason:
+          type: string
+          description: Mensagem legível da falha para logging e suporte
+        attemptedAt:
+          type: string
+          format: date-time
+          description: Timestamp UTC da tentativa de pagamento
+
+    OrderItemPayload:
+      type: object
+      required:
+        - productId
+        - productName
+        - quantity
+        - unitPrice
+        - subtotal
+      properties:
+        productId:
+          type: string
+          format: uuid
+        productName:
+          type: string
+          description: Nome do produto no momento da compra (snapshot)
+        quantity:
+          type: integer
+          minimum: 1
+        unitPrice:
+          type: number
+          format: double
+          minimum: 0
+          description: Preço unitário no momento da compra (snapshot)
+        subtotal:
+          type: number
+          format: double
+          minimum: 0
+          description: quantity × unitPrice
+
+    AddressPayload:
+      type: object
+      required:
+        - street
+        - city
+        - state
+        - zipCode
+      properties:
+        street:
+          type: string
+          description: Logradouro completo com número
+        city:
+          type: string
+        state:
+          type: string
+          maxLength: 2
+          description: Sigla do estado (UF)
+        zipCode:
+          type: string
+          pattern: '^\d{5}-\d{3}$'
+          description: CEP no formato 00000-000
+
+  securitySchemes:
+    user-password:
+      type: userPassword
+      description: Autenticação básica no broker AMQP (usuário e senha)
