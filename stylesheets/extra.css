@@ -232,7 +232,6 @@
    from ever breaking onto a new line regardless of viewport width. */
 .hero-title__animated {
   display: block;
-  white-space: nowrap;
   text-align: center;
 }
 
