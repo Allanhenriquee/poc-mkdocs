@@ -1,18 +1,18 @@
 
 <!doctype html>
-<html lang="pt" class="no-js">
+<html lang="en" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Documentação técnica da plataforma de pedidos e pagamentos">
+        <meta name="description" content="Technical documentation for the orders and payments platform">
       
       
-        <meta name="author" content="Time de Engenharia">
+        <meta name="author" content="Engineering Team">
       
       
-        <link rel="canonical" href="https://Allanhenriquee.github.io/poc-mkdocs/api/reference/">
+        <link rel="canonical" href="https://Allanhenriquee.github.io/poc-mkdocs/en/api/reference/">
       
       
         <link rel="prev" href="../../architecture/adr-001-event-driven/">
@@ -33,7 +33,7 @@
     
     
       
-        <title>Referência - Plataforma de Pedidos</title>
+        <title>Reference - Orders Platform</title>
       
     
     
@@ -86,8 +86,8 @@
     <div data-md-component="skip">
       
         
-        <a href="#referencia-da-api" class="md-skip">
-          Pular para conteúdo
+        <a href="#api-reference" class="md-skip">
+          Skip to content
         </a>
       
     </div>
@@ -101,8 +101,8 @@
   
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
-    <a href="../.." title="Plataforma de Pedidos" class="md-header__button md-logo" aria-label="Plataforma de Pedidos" data-md-component="logo">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Orders Platform" class="md-header__button md-logo" aria-label="Orders Platform" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m13.13 22.19-1.63-3.83c1.57-.58 3.04-1.36 4.4-2.27zM5.64 12.5l-3.83-1.63 6.1-2.77C7 9.46 6.22 10.93 5.64 12.5M21.61 2.39S16.66.269 11 5.93c-2.19 2.19-3.5 4.6-4.35 6.71-.28.75-.09 1.57.46 2.13l2.13 2.12c.55.56 1.37.74 2.12.46A19.1 19.1 0 0 0 18.07 13c5.66-5.66 3.54-10.61 3.54-10.61m-7.07 7.07c-.78-.78-.78-2.05 0-2.83s2.05-.78 2.83 0c.77.78.78 2.05 0 2.83s-2.05.78-2.83 0m-5.66 7.07-1.41-1.41zM6.24 22l3.64-3.64c-.34-.09-.67-.24-.97-.45L4.83 22zM2 22h1.41l4.77-4.76-1.42-1.41L2 20.59zm0-2.83 4.09-4.08c-.21-.3-.36-.62-.45-.97L2 17.76z"/></svg>
@@ -116,13 +116,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Plataforma de Pedidos
+            Orders Platform
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Referência
+              Reference
             
           </span>
         </div>
@@ -135,9 +135,9 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="cyan"  aria-label="Alternar para modo claro"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="cyan"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
     
-      <label class="md-header__button md-icon" title="Alternar para modo claro" for="__palette_1" hidden>
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
       </label>
     
@@ -145,9 +145,9 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="cyan"  aria-label="Alternar para modo escuro"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
     
-      <label class="md-header__button md-icon" title="Alternar para modo escuro" for="__palette_0" hidden>
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
       </label>
     
@@ -162,7 +162,7 @@
       <div class="md-header__option">
   <div class="md-select">
     
-    <button class="md-header__button md-icon" aria-label="Selecione o idioma">
+    <button class="md-header__button md-icon" aria-label="Select language">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
     </button>
     <div class="md-select__inner">
@@ -196,21 +196,21 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
-      <nav class="md-search__options" aria-label="Pesquisar">
+      <nav class="md-search__options" aria-label="Search">
         
-          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Compartilhar" aria-label="Compartilhar" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
             
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
           </a>
         
-        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
@@ -223,7 +223,7 @@
       <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            Inicializando busca
+            Initializing search
           </div>
           <ol class="md-search-result__list" role="presentation"></ol>
         </div>
@@ -235,7 +235,7 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/Allanhenriquee/poc-mkdocs" title="Ir para repositório" class="md-source" data-md-component="source">
+        <a href="https://github.com/Allanhenriquee/poc-mkdocs" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
@@ -250,7 +250,7 @@
   
     
       
-<nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
   <div class="md-grid">
     <ul class="md-tabs__list">
       
@@ -266,7 +266,7 @@
   
     
   
-  Início
+  Home
 
       </a>
     </li>
@@ -285,7 +285,7 @@
           
   
   
-  Arquitetura
+  Architecture
 
         </a>
       </li>
@@ -327,7 +327,7 @@
           
   
   
-  Guias
+  Guides
 
         </a>
       </li>
@@ -361,19 +361,19 @@
   
 
 
-<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegação" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Plataforma de Pedidos" class="md-nav__button md-logo" aria-label="Plataforma de Pedidos" data-md-component="logo">
+    <a href="../.." title="Orders Platform" class="md-nav__button md-logo" aria-label="Orders Platform" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m13.13 22.19-1.63-3.83c1.57-.58 3.04-1.36 4.4-2.27zM5.64 12.5l-3.83-1.63 6.1-2.77C7 9.46 6.22 10.93 5.64 12.5M21.61 2.39S16.66.269 11 5.93c-2.19 2.19-3.5 4.6-4.35 6.71-.28.75-.09 1.57.46 2.13l2.13 2.12c.55.56 1.37.74 2.12.46A19.1 19.1 0 0 0 18.07 13c5.66-5.66 3.54-10.61 3.54-10.61m-7.07 7.07c-.78-.78-.78-2.05 0-2.83s2.05-.78 2.83 0c.77.78.78 2.05 0 2.83s-2.05.78-2.83 0m-5.66 7.07-1.41-1.41zM6.24 22l3.64-3.64c-.34-.09-.67-.24-.97-.45L4.83 22zM2 22h1.41l4.77-4.76-1.42-1.41L2 20.59zm0-2.83 4.09-4.08c-.21-.3-.36-.62-.45-.97L2 17.76z"/></svg>
 
     </a>
-    Plataforma de Pedidos
+    Orders Platform
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/Allanhenriquee/poc-mkdocs" title="Ir para repositório" class="md-source" data-md-component="source">
+      <a href="https://github.com/Allanhenriquee/poc-mkdocs" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
@@ -400,7 +400,7 @@
   <span class="md-ellipsis">
     
   
-    Início
+    Home
   
 
     
@@ -443,7 +443,7 @@
   <span class="md-ellipsis">
     
   
-    Arquitetura
+    Architecture
   
 
     
@@ -459,7 +459,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Arquitetura
+    Architecture
   
 
           </label>
@@ -479,7 +479,7 @@
   <span class="md-ellipsis">
     
   
-    Visão Geral
+    Overview
   
 
     
@@ -507,7 +507,7 @@
   <span class="md-ellipsis">
     
   
-    Decisões (ADR)
+    Decisions (ADR)
   
 
     
@@ -608,7 +608,7 @@
   <span class="md-ellipsis">
     
   
-    Referência
+    Reference
   
 
     
@@ -626,7 +626,7 @@
   <span class="md-ellipsis">
     
   
-    Referência
+    Reference
   
 
     
@@ -638,7 +638,7 @@
       
         
 
-<nav class="md-nav md-nav--secondary" aria-label="Índice">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
@@ -647,27 +647,27 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Índice
+      Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#pedidos" class="md-nav__link">
+  <a href="#orders" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Pedidos
+        Orders
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Pedidos">
+    <nav class="md-nav" aria-label="Orders">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#criar-pedido" class="md-nav__link">
+  <a href="#create-order" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Criar pedido
+        Create order
       
     </span>
   </a>
@@ -675,10 +675,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#consultar-pedido" class="md-nav__link">
+  <a href="#get-order" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Consultar pedido
+        Get order
       
     </span>
   </a>
@@ -686,10 +686,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#cancelar-pedido" class="md-nav__link">
+  <a href="#cancel-order" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Cancelar pedido
+        Cancel order
       
     </span>
   </a>
@@ -702,10 +702,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#paginacao" class="md-nav__link">
+  <a href="#pagination" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Paginação
+        Pagination
       
     </span>
   </a>
@@ -713,10 +713,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#formato-de-erros" class="md-nav__link">
+  <a href="#error-format" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Formato de erros
+        Error Format
       
     </span>
   </a>
@@ -769,7 +769,7 @@
   <span class="md-ellipsis">
     
   
-    Guias
+    Guides
   
 
     
@@ -785,7 +785,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Guias
+    Guides
   
 
           </label>
@@ -805,7 +805,7 @@
   <span class="md-ellipsis">
     
   
-    Configuração Local
+    Local Setup
   
 
     
@@ -839,7 +839,7 @@
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="Índice">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
@@ -848,27 +848,27 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Índice
+      Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#pedidos" class="md-nav__link">
+  <a href="#orders" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Pedidos
+        Orders
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Pedidos">
+    <nav class="md-nav" aria-label="Orders">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#criar-pedido" class="md-nav__link">
+  <a href="#create-order" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Criar pedido
+        Create order
       
     </span>
   </a>
@@ -876,10 +876,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#consultar-pedido" class="md-nav__link">
+  <a href="#get-order" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Consultar pedido
+        Get order
       
     </span>
   </a>
@@ -887,10 +887,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#cancelar-pedido" class="md-nav__link">
+  <a href="#cancel-order" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Cancelar pedido
+        Cancel order
       
     </span>
   </a>
@@ -903,10 +903,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#paginacao" class="md-nav__link">
+  <a href="#pagination" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Paginação
+        Pagination
       
     </span>
   </a>
@@ -914,10 +914,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#formato-de-erros" class="md-nav__link">
+  <a href="#error-format" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Formato de erros
+        Error Format
       
     </span>
   </a>
@@ -944,15 +944,15 @@
   
 
 
-<h1 id="referencia-da-api">Referência da API<a class="headerlink" href="#referencia-da-api" title="Permanent link">&para;</a></h1>
-<p>Base URL de produção: <code>https://api.orders.exemplo.com/v1</code></p>
-<p>Todas as requisições devem conter o header:</p>
+<h1 id="api-reference">API Reference<a class="headerlink" href="#api-reference" title="Permanent link">&para;</a></h1>
+<p>Production base URL: <code>https://api.orders.exemplo.com/v1</code></p>
+<p>All requests must include the following headers:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Authorization: Bearer &lt;token&gt;
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Content-Type: application/json
 </code></pre></div>
 <hr />
-<h2 id="pedidos">Pedidos<a class="headerlink" href="#pedidos" title="Permanent link">&para;</a></h2>
-<h3 id="criar-pedido">Criar pedido<a class="headerlink" href="#criar-pedido" title="Permanent link">&para;</a></h3>
+<h2 id="orders">Orders<a class="headerlink" href="#orders" title="Permanent link">&para;</a></h2>
+<h3 id="create-order">Create order<a class="headerlink" href="#create-order" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>POST /orders
 </code></pre></div>
 <p><strong>Request body:</strong></p>
@@ -965,14 +965,14 @@
 <a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="p">}</span>
 <a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span><span class="p">],</span>
 <a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">  </span><span class="nt">&quot;shippingAddress&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span><span class="nt">&quot;street&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Rua das Flores, 123&quot;</span><span class="p">,</span>
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span><span class="nt">&quot;city&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;São Paulo&quot;</span><span class="p">,</span>
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SP&quot;</span><span class="p">,</span>
-<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">    </span><span class="nt">&quot;zipCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;01310-100&quot;</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span><span class="nt">&quot;street&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;123 Main Street&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span><span class="nt">&quot;city&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;New York&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NY&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">    </span><span class="nt">&quot;zipCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10001&quot;</span>
 <a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">  </span><span class="p">}</span>
 <a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="p">}</span>
 </code></pre></div>
-<p><strong>Resposta de sucesso — 202 Accepted:</strong></p>
+<p><strong>Success response — 202 Accepted:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">&quot;orderId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;f47ac10b-58cc-4372-a567-0e02b2c3d479&quot;</span><span class="p">,</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Pending&quot;</span><span class="p">,</span>
@@ -980,37 +980,37 @@
 <a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="p">}</span>
 </code></pre></div>
 <div class="admonition info">
-<p class="admonition-title">Por que 202?</p>
-<p>A criação do pedido é assíncrona. O status <code>Pending</code> significa que o pedido foi aceito e o processamento de pagamento está em andamento. Use o endpoint de consulta para acompanhar o status.</p>
+<p class="admonition-title">Why 202?</p>
+<p>Order creation is asynchronous. The <code>Pending</code> status means the order was accepted and payment processing is underway. Use the get order endpoint to track the current status.</p>
 </div>
-<p><strong>Erros possíveis:</strong></p>
+<p><strong>Possible errors:</strong></p>
 <table>
 <thead>
 <tr>
-<th>Código</th>
-<th>Descrição</th>
+<th>Code</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>400</td>
-<td>Request inválida (campos obrigatórios ausentes)</td>
+<td>Invalid request (missing required fields)</td>
 </tr>
 <tr>
 <td>422</td>
-<td>Produto indisponível em estoque</td>
+<td>Product out of stock</td>
 </tr>
 <tr>
 <td>401</td>
-<td>Token ausente ou inválido</td>
+<td>Missing or invalid token</td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h3 id="consultar-pedido">Consultar pedido<a class="headerlink" href="#consultar-pedido" title="Permanent link">&para;</a></h3>
+<h3 id="get-order">Get order<a class="headerlink" href="#get-order" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>GET /orders/{orderId}
 </code></pre></div>
-<p><strong>Resposta de sucesso — 200 OK:</strong></p>
+<p><strong>Success response — 200 OK:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">{</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nt">&quot;orderId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;f47ac10b-58cc-4372-a567-0e02b2c3d479&quot;</span><span class="p">,</span>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="nt">&quot;customerId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;3fa85f64-5717-4562-b3fc-2c963f66afa6&quot;</span><span class="p">,</span>
@@ -1019,7 +1019,7 @@
 <a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">  </span><span class="nt">&quot;items&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="p">{</span>
 <a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">      </span><span class="nt">&quot;productId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a1b2c3d4-0000-0000-0000-000000000001&quot;</span><span class="p">,</span>
-<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">      </span><span class="nt">&quot;productName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Tênis Running Pro&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">      </span><span class="nt">&quot;productName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Running Pro Sneakers&quot;</span><span class="p">,</span>
 <a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">      </span><span class="nt">&quot;quantity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
 <a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">      </span><span class="nt">&quot;unitPrice&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">99.95</span>
 <a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">    </span><span class="p">}</span>
@@ -1028,68 +1028,68 @@
 <a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">  </span><span class="nt">&quot;updatedAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-03-13T10:00:45Z&quot;</span>
 <a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="p">}</span>
 </code></pre></div>
-<p><strong>Status possíveis do pedido:</strong></p>
+<p><strong>Possible order statuses:</strong></p>
 <table>
 <thead>
 <tr>
 <th>Status</th>
-<th>Descrição</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>Pending</code></td>
-<td>Aguardando processamento de pagamento</td>
+<td>Awaiting payment processing</td>
 </tr>
 <tr>
 <td><code>Confirmed</code></td>
-<td>Pagamento confirmado</td>
+<td>Payment confirmed</td>
 </tr>
 <tr>
 <td><code>Cancelled</code></td>
-<td>Cancelado (por falha no pagamento ou cliente)</td>
+<td>Cancelled (payment failure or customer request)</td>
 </tr>
 <tr>
 <td><code>Shipped</code></td>
-<td>Enviado para entrega</td>
+<td>Dispatched for delivery</td>
 </tr>
 <tr>
 <td><code>Delivered</code></td>
-<td>Entregue ao cliente</td>
+<td>Delivered to customer</td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h3 id="cancelar-pedido">Cancelar pedido<a class="headerlink" href="#cancelar-pedido" title="Permanent link">&para;</a></h3>
+<h3 id="cancel-order">Cancel order<a class="headerlink" href="#cancel-order" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>DELETE /orders/{orderId}
 </code></pre></div>
-<p>Cancela um pedido que ainda esteja no status <code>Pending</code> ou <code>Confirmed</code>.</p>
-<p><strong>Resposta de sucesso — 204 No Content</strong></p>
-<p><strong>Erros possíveis:</strong></p>
+<p>Cancels an order that is still in <code>Pending</code> or <code>Confirmed</code> status.</p>
+<p><strong>Success response — 204 No Content</strong></p>
+<p><strong>Possible errors:</strong></p>
 <table>
 <thead>
 <tr>
-<th>Código</th>
-<th>Descrição</th>
+<th>Code</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>404</td>
-<td>Pedido não encontrado</td>
+<td>Order not found</td>
 </tr>
 <tr>
 <td>409</td>
-<td>Pedido não pode ser cancelado no status atual</td>
+<td>Order cannot be cancelled in its current status</td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h2 id="paginacao">Paginação<a class="headerlink" href="#paginacao" title="Permanent link">&para;</a></h2>
-<p>Endpoints de listagem suportam paginação via query parameters:</p>
+<h2 id="pagination">Pagination<a class="headerlink" href="#pagination" title="Permanent link">&para;</a></h2>
+<p>List endpoints support pagination via query parameters:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>GET /orders?page=1&amp;pageSize=20
 </code></pre></div>
-<p><strong>Resposta:</strong></p>
+<p><strong>Response:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="p">{</span>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">],</span>
 <a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span><span class="nt">&quot;page&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
@@ -1099,13 +1099,13 @@
 <a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="p">}</span>
 </code></pre></div>
 <hr />
-<h2 id="formato-de-erros">Formato de erros<a class="headerlink" href="#formato-de-erros" title="Permanent link">&para;</a></h2>
-<p>Todos os erros seguem o formato <strong>Problem Details</strong> (RFC 7807):</p>
+<h2 id="error-format">Error Format<a class="headerlink" href="#error-format" title="Permanent link">&para;</a></h2>
+<p>All errors follow the <strong>Problem Details</strong> format (RFC 7807):</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="p">{</span>
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://api.orders.exemplo.com/errors/validation&quot;</span><span class="p">,</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">  </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Requisição inválida&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">  </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Invalid request&quot;</span><span class="p">,</span>
 <a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span>
-<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">  </span><span class="nt">&quot;detail&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;O campo &#39;customerId&#39; é obrigatório.&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">  </span><span class="nt">&quot;detail&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The field &#39;customerId&#39; is required.&quot;</span><span class="p">,</span>
 <a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">  </span><span class="nt">&quot;traceId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;00-a1b2c3d4e5f6-b7c8d9e0f1a2-00&quot;</span>
 <a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="p">}</span>
 </code></pre></div>
@@ -1132,7 +1132,7 @@
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
-  Voltar para o topo
+  Back to top
 </button>
         
       </main>
@@ -1141,33 +1141,33 @@
   
     
       
-      <nav class="md-footer__inner md-grid" aria-label="Rodapé" >
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../../architecture/adr-001-event-driven/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Decisões (ADR)">
+          <a href="../../architecture/adr-001-event-driven/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Decisions (ADR)">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
             </div>
             <div class="md-footer__title">
               <span class="md-footer__direction">
-                Anterior
+                Previous
               </span>
               <div class="md-ellipsis">
-                Decisões (ADR)
+                Decisions (ADR)
               </div>
             </div>
           </a>
         
         
           
-          <a href="../../guides/local-setup/" class="md-footer__link md-footer__link--next" aria-label="Próximo: Configuração Local">
+          <a href="../../guides/local-setup/" class="md-footer__link md-footer__link--next" aria-label="Next: Local Setup">
             <div class="md-footer__title">
               <span class="md-footer__direction">
-                Próximo
+                Next
               </span>
               <div class="md-ellipsis">
-                Configuração Local
+                Local Setup
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -1206,7 +1206,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.code.annotate", "content.code.copy", "content.tooltips", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.code.annotate", "content.code.copy", "content.tooltips", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
