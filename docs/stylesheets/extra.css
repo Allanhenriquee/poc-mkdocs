@@ -62,8 +62,19 @@
   box-shadow: 0 1px 0 var(--border-color);
 }
 
+/* Light mode: header background is white, so text must be dark */
+[data-md-color-scheme="default"] {
+  --md-primary-bg-color: #1a1a2e;
+  --md-primary-bg-color--light: rgba(26, 26, 46, 0.54);
+}
+
 [data-md-color-scheme="default"] .md-header {
-  background: rgba(255, 255, 255, 0.85) !important;
+  background: rgba(255, 255, 255, 0.92) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+[data-md-color-scheme="default"] .md-tabs {
+  background: rgba(255, 255, 255, 0.92) !important;
 }
 
 .md-tabs {
@@ -189,10 +200,24 @@
 .hero-title {
   font-size: clamp(2.8rem, 7vw, 5rem);
   font-weight: 800;
-  line-height: 1.1;
+  line-height: 1.15;
   letter-spacing: -0.03em;
   color: var(--md-typeset-color);
   margin: 0 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.05em;
+}
+
+.hero-title__animated {
+  display: block;
+  line-height: 1.15;
+}
+
+.hero-title__static {
+  display: block;
+  line-height: 1.15;
 }
 
 .gradient-text {
