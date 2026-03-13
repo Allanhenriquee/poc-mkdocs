@@ -91,5 +91,6 @@ nav:
   - API:
       - Referência: api/reference.md
       - Interativa (Scalar): api/scalar.md
+      - Eventos (AsyncAPI): api/asyncapi.md
   - Guias:
       - Configuração Local: guides/local-setup.md
