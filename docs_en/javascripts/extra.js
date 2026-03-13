@@ -6,12 +6,14 @@ let _typedTimer   = null;
 let _scrollObs    = null;
 let _counterObs   = null;
 let _mouseFn      = null;
+let _resizeFn     = null;
 
 function cleanup() {
   if (_typedTimer)  { clearTimeout(_typedTimer); _typedTimer = null; }
   if (_scrollObs)   { _scrollObs.disconnect();   _scrollObs  = null; }
   if (_counterObs)  { _counterObs.disconnect();  _counterObs = null; }
   if (_mouseFn)     { document.removeEventListener('mousemove', _mouseFn); _mouseFn = null; }
+  if (_resizeFn)    { window.removeEventListener('resize', _resizeFn);     _resizeFn = null; }
 }
 
 /* ============================================================
@@ -172,6 +174,33 @@ function initParallax() {
 }
 
 /* ============================================================
+   Scalar API iframe — initialized on every navigation
+   ============================================================ */
+
+function initScalar() {
+  const frame = document.getElementById('scalar-frame');
+  if (!frame) return;
+
+  if (!frame.src) {
+    frame.src = '../scalar-ui.html';
+  }
+
+  const embed = document.getElementById('scalar-embed');
+
+  function adjust() {
+    const header = document.querySelector('[data-md-component="header"]');
+    const tabs   = document.querySelector('.md-tabs');
+    const offset = (header ? header.offsetHeight : 48)
+                 + (tabs   ? tabs.offsetHeight   : 0);
+    if (embed) embed.style.top = offset + 'px';
+  }
+
+  adjust();
+  _resizeFn = adjust;
+  window.addEventListener('resize', _resizeFn);
+}
+
+/* ============================================================
    Boot — called after every page navigation
    ============================================================ */
 
@@ -181,6 +210,7 @@ function boot() {
   initCounters();
   initScrollAnimations();
   initParallax();
+  initScalar();
 }
 
 /* ============================================================
