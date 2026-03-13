@@ -2,7 +2,7 @@
    Typed Text Effect
    ============================================================ */
 
-const TYPED_WORDS = ['Pedidos', 'Pagamentos', 'APIs', 'Plataforma'];
+const TYPED_WORDS = ['Plataforma de Pedidos', 'API de Pagamentos', 'Serviços Backend', 'Arquitetura .NET'];
 
 function initTyped() {
   const el = document.getElementById('typed-text');

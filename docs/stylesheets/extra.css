@@ -29,12 +29,12 @@
 
 [data-md-color-scheme="default"] {
   --md-primary-fg-color: #7c3aed;
-  --md-primary-fg-color--light: #a78bfa;
-  --md-primary-fg-color--dark: #6d28d9;
-  --md-accent-fg-color: #06b6d4;
-  --bg-card: rgba(0, 0, 0, 0.03);
-  --border-color: rgba(0, 0, 0, 0.08);
-  --text-muted: rgba(0, 0, 0, 0.45);
+  --md-primary-fg-color--light: #6d28d9;
+  --md-primary-fg-color--dark: #5b21b6;
+  --md-accent-fg-color: #0891b2;
+  --bg-card: #ffffff;
+  --border-color: rgba(0, 0, 0, 0.1);
+  --text-muted: rgba(0, 0, 0, 0.55);
 }
 
 /* ============================================================
@@ -584,6 +584,143 @@
 .md-typeset table:not([class]) th {
   background: rgba(124, 58, 237, 0.08);
   font-weight: 600;
+}
+
+/* ============================================================
+   Light Mode Overrides
+   ============================================================ */
+
+/* Hero background — soft purple-to-blue gradient */
+[data-md-color-scheme="default"] .hero {
+  background: linear-gradient(160deg, #faf5ff 0%, #eff6ff 50%, #f0fdfa 100%);
+}
+
+/* Grid lines more visible on white */
+[data-md-color-scheme="default"] .hero-grid-overlay {
+  background-image:
+    linear-gradient(rgba(124, 58, 237, 0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124, 58, 237, 0.09) 1px, transparent 1px);
+}
+
+/* Orbs — more saturated so they show on white */
+[data-md-color-scheme="default"] .hero-orb--1 {
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.55) 0%, transparent 70%);
+  opacity: 0.7;
+}
+[data-md-color-scheme="default"] .hero-orb--2 {
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.45) 0%, transparent 70%);
+  opacity: 0.65;
+}
+[data-md-color-scheme="default"] .hero-orb--3 {
+  background: radial-gradient(circle, rgba(167, 139, 250, 0.35) 0%, transparent 70%);
+  opacity: 0.6;
+}
+
+/* Badge */
+[data-md-color-scheme="default"] .hero-badge {
+  background: rgba(124, 58, 237, 0.07);
+  border-color: rgba(124, 58, 237, 0.25);
+  color: #5b21b6;
+}
+
+/* Gradient text — darker range for legibility on white */
+[data-md-color-scheme="default"] .gradient-text {
+  background: linear-gradient(135deg, #7c3aed 0%, #0891b2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Subtitle */
+[data-md-color-scheme="default"] .hero-subtitle {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+/* Primary button — keep as-is (dark with white text) */
+
+/* Secondary button — visible on light background */
+[data-md-color-scheme="default"] .btn--secondary {
+  background: #ffffff;
+  border: 1.5px solid rgba(124, 58, 237, 0.3);
+  color: #3b0764 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+[data-md-color-scheme="default"] .btn--secondary:hover {
+  background: #faf5ff;
+  border-color: #7c3aed;
+  color: #7c3aed !important;
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.2);
+}
+
+/* Stats panel */
+[data-md-color-scheme="default"] .hero-stats {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+[data-md-color-scheme="default"] .hero-stat-divider {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* Feature cards */
+[data-md-color-scheme="default"] .feature-card {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.09);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+}
+[data-md-color-scheme="default"] .feature-card:hover {
+  border-color: rgba(124, 58, 237, 0.35);
+  box-shadow: 0 8px 32px rgba(124, 58, 237, 0.12);
+}
+
+/* Feature card link — dark enough to read */
+[data-md-color-scheme="default"] .feature-card__link {
+  color: #7c3aed;
+}
+[data-md-color-scheme="default"] .feature-card:hover .feature-card__link {
+  color: #0891b2;
+}
+
+/* Icons — stronger colors on white */
+[data-md-color-scheme="default"] .feature-card__icon--purple {
+  background: rgba(124, 58, 237, 0.1);
+  color: #7c3aed;
+}
+[data-md-color-scheme="default"] .feature-card__icon--cyan {
+  background: rgba(8, 145, 178, 0.1);
+  color: #0891b2;
+}
+[data-md-color-scheme="default"] .feature-card__icon--green {
+  background: rgba(5, 150, 105, 0.1);
+  color: #059669;
+}
+[data-md-color-scheme="default"] .feature-card__icon--orange {
+  background: rgba(217, 119, 6, 0.1);
+  color: #d97706;
+}
+
+/* Section badge */
+[data-md-color-scheme="default"] .section-badge {
+  color: #0891b2;
+  background: rgba(8, 145, 178, 0.08);
+  border-color: rgba(8, 145, 178, 0.25);
+}
+
+/* Stack items */
+[data-md-color-scheme="default"] .stack-item {
+  background: #f8f8fc;
+  border-color: rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.6);
+}
+[data-md-color-scheme="default"] .stack-item:hover {
+  background: #f3eeff;
+  border-color: rgba(124, 58, 237, 0.35);
+  color: #7c3aed;
+}
+
+/* Navigation tabs on light */
+[data-md-color-scheme="default"] .md-tabs {
+  border-bottom-color: rgba(0, 0, 0, 0.08);
 }
 
 /* ============================================================
