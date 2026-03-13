@@ -419,3 +419,6 @@ FodyWeavers.xsd
 
 # MkDocs build output
 site/
+
+# OpenAPI spec gerada pelo dotnet build (artefato — CI copia para docs/)
+src/**/*_openapi.json

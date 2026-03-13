@@ -12,26 +12,46 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
+      # ── .NET ──────────────────────────────────────────────────────────────
+      # Roda dotnet build, que gera src/OrdersApi/openapi.json via
+      # Microsoft.Extensions.ApiDescription.Server + OpenApiGenerateDocuments=true.
+      # Toda mudança de endpoint, schema ou descrição na API reflete no spec.
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Restore .NET dependencies
+        run: dotnet restore src/OrdersApi/OrdersApi.csproj
+
+      - name: Build API e gerar openapi.json
+        run: dotnet build src/OrdersApi/OrdersApi.csproj --configuration Release --no-restore
+
+      - name: Copiar spec para docs
+        run: |
+          cp src/OrdersApi/OrdersApi_openapi.json docs/openapi.json
+          cp src/OrdersApi/OrdersApi_openapi.json docs_en/openapi.json
+
+      # ── MkDocs ────────────────────────────────────────────────────────────
+
       - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
-      - name: Install dependencies
+      - name: Instalar dependências MkDocs
         run: pip install mkdocs-material ghp-import
 
-      # Build PT-BR into site/
-      - name: Build PT-BR site
+      - name: Build site PT-BR
         run: mkdocs build --config-file mkdocs.yml --site-dir site
 
-      # Build EN into site/en/ (merges into the same output folder)
-      - name: Build EN site
+      - name: Build site EN
         run: mkdocs build --config-file mkdocs.en.yml --site-dir site/en
 
-      # Push the combined site/ folder to gh-pages in a single commit
-      - name: Deploy to GitHub Pages
+      - name: Deploy para GitHub Pages
         run: ghp-import -n -p -f site

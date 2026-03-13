@@ -91,5 +91,6 @@ nav:
       - Decisions (ADR): architecture/adr-001-event-driven.md
   - API:
       - Reference: api/reference.md
+      - Interactive (Scalar): api/scalar.md
   - Guides:
       - Local Setup: guides/local-setup.md
