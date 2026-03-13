@@ -66,9 +66,6 @@ Nas seções abaixo você encontra o passo a passo completo para instalar cada u
 2. Clique no botão **"Download Python 3.x.x"** (versão mais recente)
 3. Execute o instalador baixado
 4. **Importante:** na primeira tela do instalador, marque a opção **"Add Python to PATH"** antes de clicar em Install Now
-
-   ![Add Python to PATH](https://i.imgur.com/placeholder.png)
-
 5. Clique em **"Install Now"** e aguarde a instalação
 6. Após concluir, abra o **Prompt de Comando** (pressione `Win + R`, digite `cmd` e Enter)
 7. Verifique a instalação:
@@ -407,7 +404,7 @@ hide:
 
 ### Página de arquitetura — `docs/architecture/overview.md`
 
-```markdown
+````markdown
 # Visão Geral da Arquitetura
 
 Descreva aqui a arquitetura do sistema.
@@ -427,7 +424,7 @@ graph TD
 |-----------|-----------------|
 | API Gateway | Roteamento e autenticação |
 | Serviço de Pedidos | Gestão do ciclo de vida dos pedidos |
-```
+````
 
 ### Página de API — `docs/api/reference.md`
 
@@ -490,7 +487,7 @@ Cria um novo pedido.
 
 **Tabs dentro de página:**
 
-```markdown
+````markdown
 === "macOS / Linux"
     ```bash
     source .venv/bin/activate
@@ -500,7 +497,7 @@ Cria um novo pedido.
     ```cmd
     .venv\Scripts\activate
     ```
-```
+````
 
 ---
 
