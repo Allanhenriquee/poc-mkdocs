@@ -1,8 +1,12 @@
 # poc-mkdocs
 
+> **[Read in English](README.en.md)**
+
 POC de documentação técnica utilizando [MkDocs](https://www.mkdocs.org/) com o tema [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/). O objetivo é demonstrar como criar um site de documentação moderno, bonito e interativo do zero, com deploy automático via GitHub Actions no GitHub Pages.
 
-**Demo:** https://Allanhenriquee.github.io/poc-mkdocs
+**Demo (PT-BR):** https://Allanhenriquee.github.io/poc-mkdocs
+
+**Demo (EN):** https://Allanhenriquee.github.io/poc-mkdocs/en/
 
 ---
 
