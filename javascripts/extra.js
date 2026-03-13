@@ -1,14 +1,35 @@
 /* ============================================================
+   State — track handles for cleanup between navigations
+   ============================================================ */
+
+let _typedTimer   = null;
+let _scrollObs    = null;
+let _counterObs   = null;
+let _mouseFn      = null;
+
+function cleanup() {
+  if (_typedTimer)  { clearTimeout(_typedTimer); _typedTimer = null; }
+  if (_scrollObs)   { _scrollObs.disconnect();   _scrollObs  = null; }
+  if (_counterObs)  { _counterObs.disconnect();  _counterObs = null; }
+  if (_mouseFn)     { document.removeEventListener('mousemove', _mouseFn); _mouseFn = null; }
+  document.querySelectorAll('.typed-cursor').forEach(el => el.remove());
+}
+
+/* ============================================================
    Typed Text Effect
    ============================================================ */
 
-const TYPED_WORDS = ['Plataforma de Pedidos', 'API de Pagamentos', 'Serviços Backend', 'Arquitetura .NET'];
+const TYPED_WORDS = [
+  'Plataforma de Pedidos',
+  'API de Pagamentos',
+  'Serviços Backend',
+  'Arquitetura .NET'
+];
 
 function initTyped() {
   const el = document.getElementById('typed-text');
   if (!el) return;
 
-  // Inject cursor element
   const cursor = document.createElement('span');
   cursor.className = 'typed-cursor';
   el.parentNode.insertBefore(cursor, el.nextSibling);
@@ -16,7 +37,6 @@ function initTyped() {
   let wordIndex = 0;
   let charIndex = 0;
   let isDeleting = false;
-  let isPaused = false;
 
   function type() {
     const currentWord = TYPED_WORDS[wordIndex];
@@ -25,8 +45,7 @@ function initTyped() {
       el.textContent = currentWord.slice(0, charIndex + 1);
       charIndex++;
       if (charIndex === currentWord.length) {
-        isPaused = true;
-        setTimeout(() => { isPaused = false; isDeleting = true; type(); }, 1800);
+        _typedTimer = setTimeout(() => { isDeleting = true; type(); }, 1800);
         return;
       }
     } else {
@@ -38,13 +57,11 @@ function initTyped() {
       }
     }
 
-    if (!isPaused) {
-      const speed = isDeleting ? 55 : 100;
-      setTimeout(type, speed);
-    }
+    const speed = isDeleting ? 50 : 95;
+    _typedTimer = setTimeout(type, speed);
   }
 
-  setTimeout(type, 800);
+  _typedTimer = setTimeout(type, 600);
 }
 
 /* ============================================================
@@ -57,9 +74,7 @@ function animateCounter(el) {
   const start = performance.now();
 
   function update(now) {
-    const elapsed = now - start;
-    const progress = Math.min(elapsed / duration, 1);
-    // Ease out cubic
+    const progress = Math.min((now - start) / duration, 1);
     const eased = 1 - Math.pow(1 - progress, 3);
     el.textContent = Math.floor(eased * target);
     if (progress < 1) requestAnimationFrame(update);
@@ -73,16 +88,19 @@ function initCounters() {
   const counters = document.querySelectorAll('.hero-stat__number[data-count]');
   if (!counters.length) return;
 
-  const observer = new IntersectionObserver((entries) => {
+  _counterObs = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         animateCounter(entry.target);
-        observer.unobserve(entry.target);
+        _counterObs.unobserve(entry.target);
       }
     });
   }, { threshold: 0.5 });
 
-  counters.forEach(counter => observer.observe(counter));
+  counters.forEach(el => {
+    el.textContent = '0';
+    _counterObs.observe(el);
+  });
 }
 
 /* ============================================================
@@ -93,20 +111,23 @@ function initScrollAnimations() {
   const elements = document.querySelectorAll('.fade-in');
   if (!elements.length) return;
 
-  const observer = new IntersectionObserver((entries) => {
+  // Reset state so elements animate fresh on each navigation
+  elements.forEach(el => el.classList.remove('visible'));
+
+  _scrollObs = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
+        _scrollObs.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
 
-  elements.forEach(el => observer.observe(el));
+  elements.forEach(el => _scrollObs.observe(el));
 }
 
 /* ============================================================
-   Subtle Parallax on Hero Orbs
+   Parallax on Hero Orbs
    ============================================================ */
 
 function initParallax() {
@@ -115,35 +136,45 @@ function initParallax() {
 
   let ticking = false;
 
-  document.addEventListener('mousemove', (e) => {
+  _mouseFn = (e) => {
     if (ticking) return;
     ticking = true;
     requestAnimationFrame(() => {
-      const cx = window.innerWidth / 2;
-      const cy = window.innerHeight / 2;
-      const dx = (e.clientX - cx) / cx;
-      const dy = (e.clientY - cy) / cy;
-
+      const dx = (e.clientX - window.innerWidth  / 2) / window.innerWidth;
+      const dy = (e.clientY - window.innerHeight / 2) / window.innerHeight;
       orbs.forEach((orb, i) => {
-        const factor = (i + 1) * 10;
-        orb.style.transform = `translate(${dx * factor}px, ${dy * factor}px)`;
+        const f = (i + 1) * 10;
+        orb.style.transform = `translate(${dx * f}px, ${dy * f}px)`;
       });
       ticking = false;
     });
-  });
+  };
+
+  document.addEventListener('mousemove', _mouseFn);
 }
 
 /* ============================================================
-   Boot — runs on every page navigation (instant loading)
+   Boot — called after every page navigation
    ============================================================ */
 
 function boot() {
+  cleanup();
   initTyped();
   initCounters();
   initScrollAnimations();
   initParallax();
 }
 
-// MkDocs Material instant loading fires this custom event
-document.addEventListener('DOMContentLoaded', boot);
-document.addEventListener('DOMContentSwitch', boot); // instant navigation
+/* ============================================================
+   Hook into MkDocs Material navigation
+   MkDocs Material exposes `document$` (RxJS BehaviorSubject)
+   that fires after every page swap, including the first load.
+   This is the correct way to handle instant navigation.
+   ============================================================ */
+
+if (typeof document$ !== 'undefined') {
+  document$.subscribe(boot);
+} else {
+  // Fallback for environments without instant loading
+  document.addEventListener('DOMContentLoaded', boot);
+}
