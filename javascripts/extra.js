@@ -26,9 +26,15 @@ const TYPED_WORDS = [
   'Arquitetura .NET'
 ];
 
+// Minimum chars before doing a fade-swap instead of full deletion.
+// Prevents the "cursor on almost-blank line" perception.
+const TYPED_MIN_CHARS = 4;
+
 function initTyped() {
   const el = document.getElementById('typed-text');
   if (!el) return;
+
+  const wrapper = el.parentElement; // .hero-title__animated
 
   const cursor = document.createElement('span');
   cursor.className = 'typed-cursor';
@@ -38,6 +44,28 @@ function initTyped() {
   let charIndex = 0;
   let isDeleting = false;
 
+  // Set first word immediately so there's never a blank state on load
+  el.textContent = TYPED_WORDS[0].charAt(0);
+  charIndex = 1;
+
+  function swapWord() {
+    // Fade out wrapper, swap word content, fade back in
+    wrapper.style.transition = 'opacity 0.18s ease';
+    wrapper.style.opacity = '0';
+
+    _typedTimer = setTimeout(() => {
+      wordIndex = (wordIndex + 1) % TYPED_WORDS.length;
+      charIndex = 0;
+      isDeleting = false;
+      el.textContent = TYPED_WORDS[wordIndex].charAt(0);
+      charIndex = 1;
+      wrapper.style.opacity = '1';
+
+      // Small pause after fade-in before continuing to type
+      _typedTimer = setTimeout(type, 220);
+    }, 200);
+  }
+
   function type() {
     const currentWord = TYPED_WORDS[wordIndex];
 
@@ -45,25 +73,26 @@ function initTyped() {
       el.textContent = currentWord.slice(0, charIndex + 1);
       charIndex++;
       if (charIndex === currentWord.length) {
+        // Full word shown — pause then start deleting
         _typedTimer = setTimeout(() => { isDeleting = true; type(); }, 1800);
         return;
       }
     } else {
-      charIndex--;
-      if (charIndex === 0) {
-        // Transition directly to first char of next word — never show empty span
-        isDeleting = false;
-        wordIndex = (wordIndex + 1) % TYPED_WORDS.length;
-        charIndex = 1;
+      if (charIndex <= TYPED_MIN_CHARS) {
+        // Too few chars left — fade-swap to avoid almost-blank line
+        swapWord();
+        return;
       }
-      el.textContent = TYPED_WORDS[wordIndex].slice(0, charIndex);
+      charIndex--;
+      el.textContent = currentWord.slice(0, charIndex);
     }
 
-    const speed = isDeleting ? 50 : 95;
+    const speed = isDeleting ? 45 : 90;
     _typedTimer = setTimeout(type, speed);
   }
 
-  _typedTimer = setTimeout(type, 600);
+  // Short initial delay before animation starts
+  _typedTimer = setTimeout(type, 400);
 }
 
 /* ============================================================
@@ -113,8 +142,8 @@ function initScrollAnimations() {
   const elements = document.querySelectorAll('.fade-in');
   if (!elements.length) return;
 
-  // Reset state so elements animate fresh on each navigation
-  elements.forEach(el => el.classList.remove('visible'));
+  // Do NOT remove 'visible' here — fresh DOM elements from navigation
+  // already start without it; removing it causes visible flash on return.
 
   _scrollObs = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -123,7 +152,12 @@ function initScrollAnimations() {
         _scrollObs.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+  }, {
+    threshold: 0.08,
+    // Positive bottom margin: trigger animation before element reaches
+    // the viewport so content is already fading in when user scrolls to it
+    rootMargin: '0px 0px 80px 0px'
+  });
 
   elements.forEach(el => _scrollObs.observe(el));
 }
@@ -145,7 +179,7 @@ function initParallax() {
       const dx = (e.clientX - window.innerWidth  / 2) / window.innerWidth;
       const dy = (e.clientY - window.innerHeight / 2) / window.innerHeight;
       orbs.forEach((orb, i) => {
-        const f = (i + 1) * 10;
+        const f = (i + 1) * 8;
         orb.style.transform = `translate(${dx * f}px, ${dy * f}px)`;
       });
       ticking = false;
@@ -169,14 +203,10 @@ function boot() {
 
 /* ============================================================
    Hook into MkDocs Material navigation
-   MkDocs Material exposes `document$` (RxJS BehaviorSubject)
-   that fires after every page swap, including the first load.
-   This is the correct way to handle instant navigation.
    ============================================================ */
 
 if (typeof document$ !== 'undefined') {
   document$.subscribe(boot);
 } else {
-  // Fallback for environments without instant loading
   document.addEventListener('DOMContentLoaded', boot);
 }
