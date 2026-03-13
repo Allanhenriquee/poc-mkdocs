@@ -1,15 +1,16 @@
-site_name: Plataforma de Pedidos
-site_description: Documentação técnica da plataforma de pedidos e pagamentos
-site_author: Time de Engenharia
-site_url: https://Allanhenriquee.github.io/poc-mkdocs
+site_name: Orders Platform
+site_description: Technical documentation for the orders and payments platform
+site_author: Engineering Team
+site_url: https://Allanhenriquee.github.io/poc-mkdocs/en/
 
 repo_name: Allanhenriquee/poc-mkdocs
 repo_url: https://github.com/Allanhenriquee/poc-mkdocs
 
+docs_dir: docs_en
 theme:
   name: material
-  custom_dir: overrides
-  language: pt-BR
+  custom_dir: overrides_en
+  language: en
   font:
     text: Inter
     code: JetBrains Mono
@@ -19,13 +20,13 @@ theme:
       accent: cyan
       toggle:
         icon: material/brightness-4
-        name: Alternar para modo claro
+        name: Switch to light mode
     - scheme: default
       primary: custom
       accent: cyan
       toggle:
         icon: material/brightness-7
-        name: Alternar para modo escuro
+        name: Switch to dark mode
   features:
     - navigation.instant
     - navigation.instant.progress
@@ -63,7 +64,7 @@ extra:
 
 plugins:
   - search:
-      lang: pt
+      lang: en
 
 markdown_extensions:
   - admonition
@@ -84,11 +85,11 @@ markdown_extensions:
   - md_in_html
 
 nav:
-  - Início: index.md
-  - Arquitetura:
-      - Visão Geral: architecture/overview.md
-      - Decisões (ADR): architecture/adr-001-event-driven.md
+  - Home: index.md
+  - Architecture:
+      - Overview: architecture/overview.md
+      - Decisions (ADR): architecture/adr-001-event-driven.md
   - API:
-      - Referência: api/reference.md
-  - Guias:
-      - Configuração Local: guides/local-setup.md
+      - Reference: api/reference.md
+  - Guides:
+      - Local Setup: guides/local-setup.md
