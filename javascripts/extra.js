@@ -12,7 +12,6 @@ function cleanup() {
   if (_scrollObs)   { _scrollObs.disconnect();   _scrollObs  = null; }
   if (_counterObs)  { _counterObs.disconnect();  _counterObs = null; }
   if (_mouseFn)     { document.removeEventListener('mousemove', _mouseFn); _mouseFn = null; }
-  document.querySelectorAll('.typed-cursor').forEach(el => el.remove());
 }
 
 /* ============================================================
@@ -36,10 +35,7 @@ function initTyped() {
 
   const wrapper = el.parentElement; // .hero-title__animated
 
-  const cursor = document.createElement('span');
-  cursor.className = 'typed-cursor';
-  el.parentNode.insertBefore(cursor, el.nextSibling);
-
+  // Cursor is rendered via CSS #typed-text::after — no DOM element needed.
   let wordIndex = 0;
   let charIndex = 0;
   let isDeleting = false;

@@ -223,12 +223,18 @@
   font-weight: 800;
   letter-spacing: -0.03em;
   color: var(--md-typeset-color);
-  margin: 0 0 1.5rem;
-  line-height: 1.05;
+  margin: 0 0 1.5rem !important;
+  line-height: 1.1 !important;
   text-align: center;
 }
 
-.hero-title__animated,
+/* Each line is a block. Animated line has nowrap to prevent cursor
+   from ever breaking onto a new line regardless of viewport width. */
+.hero-title__animated {
+  display: block;
+  white-space: nowrap;
+}
+
 .hero-title__static {
   display: block;
 }
@@ -241,12 +247,19 @@
   display: inline-block;
 }
 
-/* Typed cursor — text-bottom keeps it from inflating the line box */
-.typed-cursor {
+/* Cursor rendered as ::after on the typed text span.
+   Lives inside the gradient span — never a separate sibling
+   that could wrap to a new line. */
+#typed-text::after {
+  content: '';
   display: inline-block;
   width: 3px;
   height: 0.72em;
-  background: var(--color-accent);
+  /* Reset gradient-text properties so this is a solid-color block */
+  background: var(--color-accent) !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  -webkit-text-fill-color: initial !important;
   margin-left: 3px;
   vertical-align: text-bottom;
   border-radius: 2px;
