@@ -49,12 +49,14 @@ function initTyped() {
         return;
       }
     } else {
-      el.textContent = currentWord.slice(0, charIndex - 1);
       charIndex--;
       if (charIndex === 0) {
+        // Transition directly to first char of next word — never show empty span
         isDeleting = false;
         wordIndex = (wordIndex + 1) % TYPED_WORDS.length;
+        charIndex = 1;
       }
+      el.textContent = TYPED_WORDS[wordIndex].slice(0, charIndex);
     }
 
     const speed = isDeleting ? 50 : 95;
