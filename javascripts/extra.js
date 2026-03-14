@@ -214,8 +214,9 @@ function initApiIframe(frameId, embedId, src) {
   window.addEventListener('resize', _resizeFn);
 }
 
-function initScalar()   { initApiIframe('scalar-frame',   'scalar-embed',   '../scalar-ui.html');   }
-function initAsyncApi() { initApiIframe('asyncapi-frame', 'asyncapi-embed', '../asyncapi-ui.html'); }
+function initScalar()            { initApiIframe('scalar-frame',            'scalar-embed',            '../scalar-ui.html');            }
+function initAsyncApi()          { initApiIframe('asyncapi-frame',          'asyncapi-embed',          '../asyncapi-ui.html');          }
+function initAsyncApiGenerated() { initApiIframe('asyncapi-generated-frame','asyncapi-generated-embed','../asyncapi-generated-ui.html'); }
 
 /* ============================================================
    Boot — called after every page navigation
@@ -229,6 +230,7 @@ function boot() {
   initParallax();
   initScalar();
   initAsyncApi();
+  initAsyncApiGenerated();
 }
 
 /* ============================================================

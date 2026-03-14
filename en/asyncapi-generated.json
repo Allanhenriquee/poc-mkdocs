@@ -1,0 +1,255 @@
+{
+  "asyncapi": "2.4.0",
+  "info": {
+    "title": "Plataforma de Pedidos — Eventos Assíncronos",
+    "version": "1.0.0",
+    "description": "Contratos de eventos assíncronos gerados automaticamente do código C# via **Saunter**.\n\n## Canais\n\n- **orders.created** — publicado ao aceitar `POST /v1/orders`\n- **orders.cancelled** — publicado ao cancelar `DELETE /v1/orders/{orderId}`\n- **payments.processed** — consumido quando o gateway aprova o pagamento\n- **payments.failed** — consumido quando o gateway recusa o pagamento\n\n## Idempotência\n\nTodos os consumidores devem usar `orderId` como chave de idempotência.\nEntregas **at-least-once** — duplicatas são possíveis."
+  },
+  "servers": {
+    "rabbitmq-prod": {
+      "url": "rabbitmq.prod.internal:5672",
+      "protocol": "amqp",
+      "description": "Broker AMQP de produção"
+    },
+    "rabbitmq-dev": {
+      "url": "localhost:5672",
+      "protocol": "amqp",
+      "description": "Broker AMQP local (Docker Compose)"
+    }
+  },
+  "defaultContentType": "application/json",
+  "channels": {
+    "orders.created": {
+      "description": "Publicado imediatamente após POST /v1/orders. O pagamento ainda não foi processado neste ponto — status inicial é Pending.",
+      "publish": {
+        "operationId": "OrderCreated",
+        "summary": "Pedido aceito para processamento assíncrono",
+        "description": "Downstream services devem aguardar payments.processed para confirmar.",
+        "message": {
+          "$ref": "#/components/messages/orderCreatedEvent"
+        }
+      }
+    },
+    "orders.cancelled": {
+      "description": "Publicado quando DELETE /v1/orders/{orderId} cancela o pedido. Apenas status Pending ou Confirmed podem ser cancelados.",
+      "publish": {
+        "operationId": "OrderCancelled",
+        "summary": "Pedido cancelado pelo cliente ou sistema",
+        "message": {
+          "$ref": "#/components/messages/orderCancelledEvent"
+        }
+      }
+    },
+    "payments.processed": {
+      "description": "Consumido do serviço de pagamentos quando o gateway aprova a transação. Atualiza o status do pedido para Confirmed.",
+      "subscribe": {
+        "operationId": "PaymentProcessed",
+        "summary": "Pagamento aprovado pelo gateway",
+        "description": "Use orderId como chave de idempotência ao processar este evento.",
+        "message": {
+          "$ref": "#/components/messages/paymentProcessedEvent"
+        }
+      }
+    },
+    "payments.failed": {
+      "description": "Consumido do serviço de pagamentos quando o gateway recusa a transação. Atualiza o status do pedido para PaymentFailed.",
+      "subscribe": {
+        "operationId": "PaymentFailed",
+        "summary": "Pagamento recusado pelo gateway",
+        "description": "O cliente pode tentar novo pagamento ou o pedido é cancelado automaticamente.",
+        "message": {
+          "$ref": "#/components/messages/paymentFailedEvent"
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "orderCreatedEvent": {
+        "id": "orderCreatedEvent",
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "orderId": {
+            "type": "string",
+            "description": "Identificador único do pedido",
+            "format": "guid"
+          },
+          "customerId": {
+            "type": "string",
+            "description": "Identificador do cliente",
+            "format": "guid"
+          },
+          "items": {
+            "type": "array",
+            "description": "Itens incluídos no pedido (snapshot no momento da criação)",
+            "items": {
+              "$ref": "#/components/schemas/orderItemEventPayload"
+            }
+          },
+          "shippingAddress": {
+            "description": "Endereço de entrega informado pelo cliente",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/addressEventPayload"
+              }
+            ]
+          },
+          "totalAmount": {
+            "type": "number",
+            "description": "Valor total calculado (soma dos subtotais)",
+            "format": "decimal"
+          }
+        }
+      },
+      "orderItemEventPayload": {
+        "id": "orderItemEventPayload",
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "productId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "productName": {
+            "type": "string",
+            "description": "Nome do produto no momento da compra (snapshot)"
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "unitPrice": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "subtotal": {
+            "type": "number",
+            "description": "Quantity × UnitPrice",
+            "format": "decimal"
+          }
+        }
+      },
+      "addressEventPayload": {
+        "id": "addressEventPayload",
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "street": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string",
+            "description": "Sigla do estado (UF)"
+          },
+          "zipCode": {
+            "type": "string",
+            "description": "CEP no formato 00000-000"
+          }
+        }
+      },
+      "orderCancelledEvent": {
+        "id": "orderCancelledEvent",
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "orderId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "customerId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "reason": {
+            "type": "string",
+            "description": "Motivo do cancelamento: CustomerRequest | PaymentFailed | OutOfStock | SystemTimeout"
+          },
+          "cancelledAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "paymentProcessedEvent": {
+        "id": "paymentProcessedEvent",
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "orderId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "paymentId": {
+            "type": "string",
+            "description": "ID da transação retornado pelo gateway (ex: pi_3N8XkV2eZvKYlo2C)"
+          },
+          "amount": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "gateway": {
+            "type": "string",
+            "description": "Gateway utilizado: Stripe | PayPal | PagBank"
+          },
+          "processedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "paymentFailedEvent": {
+        "id": "paymentFailedEvent",
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "orderId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "failureCode": {
+            "type": "string",
+            "description": "Código de falha: InsufficientFunds | CardDeclined | Timeout | InvalidCard | FraudSuspicion"
+          },
+          "failureReason": {
+            "type": "string",
+            "description": "Mensagem legível da falha para logging e suporte"
+          },
+          "attemptedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    },
+    "messages": {
+      "orderCreatedEvent": {
+        "payload": {
+          "$ref": "#/components/schemas/orderCreatedEvent"
+        },
+        "name": "orderCreatedEvent"
+      },
+      "orderCancelledEvent": {
+        "payload": {
+          "$ref": "#/components/schemas/orderCancelledEvent"
+        },
+        "name": "orderCancelledEvent"
+      },
+      "paymentProcessedEvent": {
+        "payload": {
+          "$ref": "#/components/schemas/paymentProcessedEvent"
+        },
+        "name": "paymentProcessedEvent"
+      },
+      "paymentFailedEvent": {
+        "payload": {
+          "$ref": "#/components/schemas/paymentFailedEvent"
+        },
+        "name": "paymentFailedEvent"
+      }
+    }
+  }
+}

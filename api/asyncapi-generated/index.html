@@ -12,13 +12,13 @@
         <meta name="author" content="Time de Engenharia">
       
       
-        <link rel="canonical" href="https://Allanhenriquee.github.io/poc-mkdocs/architecture/adr-001-event-driven/">
+        <link rel="canonical" href="https://Allanhenriquee.github.io/poc-mkdocs/api/asyncapi-generated/">
       
       
-        <link rel="prev" href="../overview/">
+        <link rel="prev" href="../asyncapi/">
       
       
-        <link rel="next" href="../../api/reference/">
+        <link rel="next" href="../../guides/local-setup/">
       
       
         
@@ -33,7 +33,7 @@
     
     
       
-        <title>Decisões (ADR) - Plataforma de Pedidos</title>
+        <title>Eventos — Gerado do Código (Saunter) - Plataforma de Pedidos</title>
       
     
     
@@ -85,11 +85,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#adr-001-adocao-de-arquitetura-orientada-a-eventos" class="md-skip">
-          Pular para conteúdo
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -122,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Decisões (ADR)
+              Eventos — Gerado do Código (Saunter)
             
           </span>
         </div>
@@ -277,13 +272,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../overview/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../architecture/overview/" class="md-tabs__link">
           
   
   
@@ -303,7 +296,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../api/reference/" class="md-tabs__link">
+        <a href="../reference/" class="md-tabs__link">
           
   
   
@@ -319,11 +312,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../api/asyncapi/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../asyncapi/" class="md-tabs__link">
           
   
   
@@ -372,7 +367,9 @@
           
             
               
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -437,31 +434,26 @@
       
   
   
-    
   
   
-  
     
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
             
   
   
@@ -479,7 +471,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -497,7 +489,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../overview/" class="md-nav__link">
+      <a href="../../architecture/overview/" class="md-nav__link">
         
   
   
@@ -522,37 +514,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Decisões (ADR)
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../architecture/adr-001-event-driven/" class="md-nav__link">
         
   
   
@@ -568,148 +533,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Índice">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Índice
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#contexto" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Contexto
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#decisao" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Decisão
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#alternativas-consideradas" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Alternativas consideradas
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Alternativas consideradas">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#opcao-a-manter-monolito-modular-com-apis-internas" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Opção A — Manter monólito modular com APIs internas
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#opcao-b-rest-sincrono-entre-servicos" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Opção B — REST síncrono entre serviços
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#opcao-c-event-driven-com-broker-de-mensagens-escolhida" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Opção C — Event-Driven com broker de mensagens (escolhida)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#consequencias" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Consequências
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Consequências">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#positivas" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Positivas
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#negativas-riscos" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Negativas / Riscos
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mitigacoes-adotadas" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Mitigações adotadas
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -781,7 +604,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api/reference/" class="md-nav__link">
+      <a href="../reference/" class="md-nav__link">
         
   
   
@@ -809,7 +632,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api/scalar/" class="md-nav__link">
+      <a href="../scalar/" class="md-nav__link">
         
   
   
@@ -841,26 +664,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
             
   
   
@@ -878,7 +706,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -896,7 +724,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api/asyncapi/" class="md-nav__link">
+      <a href="../asyncapi/" class="md-nav__link">
         
   
   
@@ -921,10 +749,17 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../api/asyncapi-generated/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -940,6 +775,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -1047,7 +883,9 @@
             
             
               
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -1056,138 +894,6 @@
   
   
   
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Índice
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#contexto" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Contexto
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#decisao" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Decisão
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#alternativas-consideradas" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Alternativas consideradas
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Alternativas consideradas">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#opcao-a-manter-monolito-modular-com-apis-internas" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Opção A — Manter monólito modular com APIs internas
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#opcao-b-rest-sincrono-entre-servicos" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Opção B — REST síncrono entre serviços
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#opcao-c-event-driven-com-broker-de-mensagens-escolhida" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Opção C — Event-Driven com broker de mensagens (escolhida)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#consequencias" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Consequências
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Consequências">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#positivas" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Positivas
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#negativas-riscos" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Negativas / Riscos
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mitigacoes-adotadas" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Mitigações adotadas
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
   
 </nav>
                   </div>
@@ -1201,99 +907,27 @@
               <article class="md-content__inner md-typeset">
                 
                   
+  
+
 
 
   
   
 
 
-<h1 id="adr-001-adocao-de-arquitetura-orientada-a-eventos">ADR-001 — Adoção de Arquitetura Orientada a Eventos<a class="headerlink" href="#adr-001-adocao-de-arquitetura-orientada-a-eventos" title="Permanent link">&para;</a></h1>
-<table>
-<thead>
-<tr>
-<th>Campo</th>
-<th>Valor</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Status</strong></td>
-<td>Aceito</td>
-</tr>
-<tr>
-<td><strong>Data</strong></td>
-<td>2025-08-10</td>
-</tr>
-<tr>
-<td><strong>Autores</strong></td>
-<td>Time de Plataforma</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="contexto">Contexto<a class="headerlink" href="#contexto" title="Permanent link">&para;</a></h2>
-<p>A plataforma nasceu como um monólito modular. Com o crescimento do volume de pedidos e o aumento do número de times, o acoplamento entre módulos começou a gerar problemas:</p>
-<ul>
-<li>Deploys interdependentes entre times</li>
-<li>Falhas em um módulo afetando outros</li>
-<li>Dificuldade de escalar partes específicas do sistema</li>
-<li>Testes de integração lentos e frágeis</li>
-</ul>
-<p>Foi necessário avaliar uma estratégia de evolução arquitetural que reduzisse o acoplamento e aumentasse a autonomia dos times.</p>
-<h2 id="decisao">Decisão<a class="headerlink" href="#decisao" title="Permanent link">&para;</a></h2>
-<p>Adotar <strong>arquitetura orientada a eventos</strong> (EDA) como padrão de integração entre serviços da plataforma.</p>
-<p>Os serviços se comunicam via <strong>eventos de domínio</strong> publicados em um broker de mensagens (RabbitMQ localmente, Azure Service Bus em produção). Comunicação síncrona via HTTP é mantida apenas quando estritamente necessário.</p>
-<h2 id="alternativas-consideradas">Alternativas consideradas<a class="headerlink" href="#alternativas-consideradas" title="Permanent link">&para;</a></h2>
-<h3 id="opcao-a-manter-monolito-modular-com-apis-internas">Opção A — Manter monólito modular com APIs internas<a class="headerlink" href="#opcao-a-manter-monolito-modular-com-apis-internas" title="Permanent link">&para;</a></h3>
-<p><strong>Prós:</strong> simplicidade, transações ACID entre módulos, sem latência de rede.</p>
-<p><strong>Contras:</strong> acoplamento de deploy entre times, impossibilidade de escalar módulos individualmente, falhas propagadas diretamente.</p>
-<p><strong>Descartada</strong> porque o crescimento de times tornaria o acoplamento de deploy insustentável.</p>
-<hr />
-<h3 id="opcao-b-rest-sincrono-entre-servicos">Opção B — REST síncrono entre serviços<a class="headerlink" href="#opcao-b-rest-sincrono-entre-servicos" title="Permanent link">&para;</a></h3>
-<p><strong>Prós:</strong> simples de implementar, fácil de depurar, sem overhead de broker.</p>
-<p><strong>Contras:</strong> acoplamento de disponibilidade entre serviços, cascata de falhas, timeouts em pico de carga, retry storms.</p>
-<p><strong>Descartada</strong> porque a disponibilidade do payments-service impactaria diretamente a criação de pedidos.</p>
-<hr />
-<h3 id="opcao-c-event-driven-com-broker-de-mensagens-escolhida">Opção C — Event-Driven com broker de mensagens (escolhida)<a class="headerlink" href="#opcao-c-event-driven-com-broker-de-mensagens-escolhida" title="Permanent link">&para;</a></h3>
-<p><strong>Prós:</strong></p>
-<ul>
-<li>Desacoplamento de disponibilidade entre produtores e consumidores</li>
-<li>Escala independente por serviço</li>
-<li>Resiliência a falhas transitórias</li>
-<li>Histórico de eventos para auditoria e replay</li>
-</ul>
-<p><strong>Contras:</strong></p>
-<ul>
-<li>Consistência eventual (não imediata)</li>
-<li>Complexidade operacional do broker</li>
-<li>Necessidade de consumidores idempotentes</li>
-<li>Depuração mais difícil sem boa observabilidade</li>
-</ul>
-<h2 id="consequencias">Consequências<a class="headerlink" href="#consequencias" title="Permanent link">&para;</a></h2>
-<h3 id="positivas">Positivas<a class="headerlink" href="#positivas" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Times podem fazer deploy de seus serviços de forma independente</li>
-<li>Falha no <code>payments-service</code> não bloqueia a criação de pedidos</li>
-<li>Fila absorve picos de carga no processamento de pagamentos</li>
-<li>Eventos podem ser reprocessados em caso de bug no consumidor</li>
-</ul>
-<h3 id="negativas-riscos">Negativas / Riscos<a class="headerlink" href="#negativas-riscos" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Consistência eventual: o status do pedido pode não refletir o pagamento imediatamente</li>
-<li>Cada consumidor deve implementar <strong>idempotência</strong> para lidar com entrega duplicada</li>
-<li>Dead-letter queues precisam de monitoramento ativo</li>
-<li>Debugging de fluxos distribuídos requer rastreamento (correlation IDs, tracing)</li>
-</ul>
-<h2 id="mitigacoes-adotadas">Mitigações adotadas<a class="headerlink" href="#mitigacoes-adotadas" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Outbox Pattern</strong>: garante que eventos sejam publicados transacionalmente</li>
-<li><strong>Correlation ID</strong>: propagado em todos os eventos e logs</li>
-<li><strong>Dead-letter queues</strong>: monitoradas com alertas no Grafana</li>
-<li><strong>OpenTelemetry</strong>: rastreamento distribuído habilitado em todos os serviços</li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Revisão</p>
-<p>Esta decisão será revisada se o volume de mensagens exigir substituição do broker ou se a complexidade operacional superar os benefícios.</p>
+  <h1>Gerado do Código (Saunter)</h1>
+
+<style>
+  .md-content { padding: 0 !important; }
+  .md-content__inner { margin: 0 !important; padding: 0 !important; max-width: 100% !important; }
+  .asyncapi-generated-embed {
+    position: fixed; left: 0; right: 0; bottom: 0; top: 48px; z-index: 1; background: #f8fafc;
+  }
+  #asyncapi-generated-frame { width: 100%; height: 100%; border: none; display: block; }
+</style>
+
+<div class="asyncapi-generated-embed" id="asyncapi-generated-embed">
+  <iframe id="asyncapi-generated-frame" title="Eventos Assíncronos Gerados do Código — Plataforma de Pedidos"></iframe>
 </div>
 
 
@@ -1302,8 +936,13 @@
 
 
 
+  
+  
 
 
+
+
+  
 
 
 
@@ -1327,10 +966,12 @@
   
     
       
+        
+      
       <nav class="md-footer__inner md-grid" aria-label="Rodapé" >
         
           
-          <a href="../overview/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Visão Geral">
+          <a href="../asyncapi/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Spec Manual (YAML)">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1340,20 +981,20 @@
                 Anterior
               </span>
               <div class="md-ellipsis">
-                Visão Geral
+                Spec Manual (YAML)
               </div>
             </div>
           </a>
         
         
           
-          <a href="../../api/reference/" class="md-footer__link md-footer__link--next" aria-label="Próximo: Referência">
+          <a href="../../guides/local-setup/" class="md-footer__link md-footer__link--next" aria-label="Próximo: Configuração Local">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Próximo
               </span>
               <div class="md-ellipsis">
-                Referência
+                Configuração Local
               </div>
             </div>
             <div class="md-footer__button md-icon">
