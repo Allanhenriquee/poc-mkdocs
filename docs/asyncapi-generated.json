@@ -1,0 +1,9 @@
+{
+  "asyncapi": "2.6.0",
+  "info": {
+    "title": "Plataforma de Pedidos — Eventos (Gerado do Código)",
+    "version": "0.0.0",
+    "description": "Placeholder — este arquivo é sobrescrito pelo CI a cada push para main.\n\nExecute o workflow do GitHub Actions para gerar o spec real a partir do código C#."
+  },
+  "channels": {}
+}

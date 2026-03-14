@@ -92,6 +92,8 @@ nav:
   - API:
       - Reference: api/reference.md
       - Interactive (Scalar): api/scalar.md
-      - Events (AsyncAPI): api/asyncapi.md
+  - Async Events:
+      - Manual Spec (YAML): api/asyncapi.md
+      - Code Generated (Saunter): api/asyncapi-generated.md
   - Guides:
       - Local Setup: guides/local-setup.md

@@ -1,5 +1,8 @@
 using Scalar.AspNetCore;
 using OrdersApi.Models;
+using Saunter;
+using Saunter.AsyncApiSchema.v2;
+using OrdersApi.AsyncApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -48,6 +51,44 @@ builder.Services.AddOpenApi("openapi", options =>
     });
 });
 
+// AsyncAPI — documenta contratos de eventos via Saunter (spec gerado em runtime)
+builder.Services.AddAsyncApiSchemaGeneration(options =>
+{
+    options.AssemblyMarkerTypes = new[] { typeof(OrdersAsyncApiDocumentation) };
+    options.AsyncApi = new AsyncApiDocument
+    {
+        Info = new Info("Plataforma de Pedidos — Eventos Assíncronos", "1.0.0")
+        {
+            Description = """
+                Contratos de eventos assíncronos gerados automaticamente do código C# via **Saunter**.
+
+                ## Canais
+
+                - **orders.created** — publicado ao aceitar `POST /v1/orders`
+                - **orders.cancelled** — publicado ao cancelar `DELETE /v1/orders/{orderId}`
+                - **payments.processed** — consumido quando o gateway aprova o pagamento
+                - **payments.failed** — consumido quando o gateway recusa o pagamento
+
+                ## Idempotência
+
+                Todos os consumidores devem usar `orderId` como chave de idempotência.
+                Entregas **at-least-once** — duplicatas são possíveis.
+                """
+        },
+        Servers = new Dictionary<string, Server>
+        {
+            ["rabbitmq-prod"] = new Server("rabbitmq.prod.internal:5672", "amqp")
+            {
+                Description = "Broker AMQP de produção"
+            },
+            ["rabbitmq-dev"] = new Server("localhost:5672", "amqp")
+            {
+                Description = "Broker AMQP local (Docker Compose)"
+            }
+        }
+    };
+});
+
 // In-memory store para a POC
 var db = new Dictionary<Guid, Order>();
 
@@ -55,6 +96,9 @@ var app = builder.Build();
 
 // Expõe /openapi/openapi.json — usado pelo Scalar no MkDocs (GitHub Pages)
 app.MapOpenApi();
+
+// Expõe /asyncapi/asyncapi.json — capturado pelo CI para o MkDocs (GitHub Pages)
+app.MapAsyncApiDocuments();
 
 // Scalar interativo ao rodar a API localmente
 app.MapScalarApiReference("/scalar", options =>

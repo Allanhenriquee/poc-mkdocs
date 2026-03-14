@@ -1,0 +1,9 @@
+{
+  "asyncapi": "2.6.0",
+  "info": {
+    "title": "Orders Platform — Events (Code Generated)",
+    "version": "0.0.0",
+    "description": "Placeholder — this file is overwritten by CI on every push to main.\n\nRun the GitHub Actions workflow to generate the real spec from C# code."
+  },
+  "channels": {}
+}

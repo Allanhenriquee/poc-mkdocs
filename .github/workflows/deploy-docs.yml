@@ -38,6 +38,34 @@ jobs:
           cp src/OrdersApi/OrdersApi_openapi.json docs/openapi.json
           cp src/OrdersApi/OrdersApi_openapi.json docs_en/openapi.json
 
+      - name: Gerar AsyncAPI spec via Saunter
+        run: |
+          # Inicia a API em background na porta 5289
+          ASPNETCORE_URLS=http://localhost:5289 \
+            dotnet run --project src/OrdersApi/OrdersApi.csproj \
+              --configuration Release --no-build &
+          API_PID=$!
+
+          # Aguarda até 60s a API expor /asyncapi/asyncapi.json
+          echo "Aguardando API inicializar..."
+          ATTEMPTS=0
+          until curl -sf http://localhost:5289/asyncapi/asyncapi.json > /dev/null 2>&1; do
+            ATTEMPTS=$((ATTEMPTS + 1))
+            if [ $ATTEMPTS -ge 60 ]; then
+              echo "ERRO: API não respondeu em 60s"
+              kill $API_PID || true
+              exit 1
+            fi
+            sleep 1
+          done
+
+          echo "API pronta (${ATTEMPTS}s). Capturando spec AsyncAPI..."
+          curl -s http://localhost:5289/asyncapi/asyncapi.json -o docs/asyncapi-generated.json
+          cp docs/asyncapi-generated.json docs_en/asyncapi-generated.json
+          echo "Spec capturado com sucesso."
+
+          kill $API_PID || true
+
       # ── MkDocs ────────────────────────────────────────────────────────────
 
       - uses: actions/setup-python@v5
