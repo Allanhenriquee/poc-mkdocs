@@ -195,18 +195,21 @@ function initApiIframe(frameId, embedId, src) {
   const frame = document.getElementById(frameId);
   if (!frame) return;
 
-  if (!frame.src) {
-    frame.src = src;
-  }
+  // Always (re)set src — avoids stale src after SPA navigation
+  frame.src = src;
 
   const embed = document.getElementById(embedId);
 
   function adjust() {
     const header = document.querySelector('[data-md-component="header"]');
     const tabs   = document.querySelector('.md-tabs');
-    const offset = (header ? header.offsetHeight : 48)
-                 + (tabs   ? tabs.offsetHeight   : 0);
-    if (embed) embed.style.top = offset + 'px';
+    // Fallback: 56px header + 48px tabs (Material for MkDocs defaults)
+    const offset = (header ? header.offsetHeight : 56)
+                 + (tabs   ? tabs.offsetHeight   : 48);
+    if (embed) {
+      embed.style.top = offset + 'px';
+      embed.style.visibility = 'visible';
+    }
   }
 
   adjust();
