@@ -15,7 +15,7 @@ public sealed class OrdersAsyncApiDocumentation
 
     [Channel("orders.created",
         Description = "Publicado imediatamente após POST /v1/orders. " +
-                      "O pagamento ainda não foi processado neste ponto — status inicial é Pending.")]
+                      "O pagamento ainda não foi processado neste ponto — status inicial é Pending (atualizado).")]
     [PublishOperation(typeof(OrderCreatedEvent),
         Summary = "Pedido aceito para processamento assíncrono",
         Description = "Downstream services devem aguardar payments.processed para confirmar.")]

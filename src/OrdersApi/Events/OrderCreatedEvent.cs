@@ -4,7 +4,7 @@ namespace OrdersApi.Events;
 
 /// <summary>Payload do evento order.created.v1 — publicado ao aceitar POST /v1/orders.</summary>
 public record OrderCreatedEvent(
-    [property: Description("Identificador único do pedido")]
+    [property: Description("Identificador único do pedido (atualizado)")]
     Guid OrderId,
 
     [property: Description("Identificador do cliente")]

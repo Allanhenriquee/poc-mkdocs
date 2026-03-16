@@ -122,7 +122,7 @@ orders.MapPost("/", CreateOrder)
       .WithName("CreateOrder")
       .WithSummary("Criar pedido")
       .WithDescription("""
-          Aceita um novo pedido para processamento assíncrono.
+          Aceita um novo pedido para processamento assíncrono (atualizado).
 
           Retorna `202 Accepted` imediatamente. O status é atualizado conforme
           o pagamento é processado. Use `GET /v1/orders/{orderId}` para acompanhar.
