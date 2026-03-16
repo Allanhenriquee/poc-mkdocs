@@ -2,34 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://Allanhenriquee.github.io/poc-mkdocs/en/</loc>
-         <lastmod>2026-03-14</lastmod>
+         <lastmod>2026-03-16</lastmod>
     </url>
     <url>
          <loc>https://Allanhenriquee.github.io/poc-mkdocs/en/api/asyncapi-generated/</loc>
-         <lastmod>2026-03-14</lastmod>
+         <lastmod>2026-03-16</lastmod>
     </url>
     <url>
          <loc>https://Allanhenriquee.github.io/poc-mkdocs/en/api/asyncapi/</loc>
-         <lastmod>2026-03-14</lastmod>
+         <lastmod>2026-03-16</lastmod>
     </url>
     <url>
          <loc>https://Allanhenriquee.github.io/poc-mkdocs/en/api/reference/</loc>
-         <lastmod>2026-03-14</lastmod>
+         <lastmod>2026-03-16</lastmod>
     </url>
     <url>
          <loc>https://Allanhenriquee.github.io/poc-mkdocs/en/api/scalar/</loc>
-         <lastmod>2026-03-14</lastmod>
+         <lastmod>2026-03-16</lastmod>
     </url>
     <url>
          <loc>https://Allanhenriquee.github.io/poc-mkdocs/en/architecture/adr-001-event-driven/</loc>
-         <lastmod>2026-03-14</lastmod>
+         <lastmod>2026-03-16</lastmod>
     </url>
     <url>
          <loc>https://Allanhenriquee.github.io/poc-mkdocs/en/architecture/overview/</loc>
-         <lastmod>2026-03-14</lastmod>
+         <lastmod>2026-03-16</lastmod>
     </url>
     <url>
          <loc>https://Allanhenriquee.github.io/poc-mkdocs/en/guides/local-setup/</loc>
-         <lastmod>2026-03-14</lastmod>
+         <lastmod>2026-03-16</lastmod>
     </url>
 </urlset>
