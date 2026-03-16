@@ -18,8 +18,8 @@ hide:
     right: 0;
     bottom: 0;
     top: 48px;
-    z-index: 1;
-    background: #f8fafc;
+    z-index: 2;
+    background: #0f0f17;
   }
   #asyncapi-frame {
     width: 100%;

@@ -1,9 +1,239 @@
 {
   "asyncapi": "2.6.0",
   "info": {
-    "title": "Orders Platform — Events (Code Generated)",
-    "version": "0.0.0",
-    "description": "Placeholder — this file is overwritten by CI on every push to main.\n\nRun the GitHub Actions workflow to generate the real spec from C# code."
+    "title": "Orders Platform — Async Events",
+    "version": "1.0.0",
+    "description": "Async event contracts automatically generated from C# code via **Saunter**.\n\n## Channels\n\n- **orders.created** — published when `POST /v1/orders` is accepted\n- **orders.cancelled** — published when `DELETE /v1/orders/{orderId}` cancels the order\n- **payments.processed** — consumed when the payment gateway approves\n- **payments.failed** — consumed when the payment gateway declines\n\n## Idempotency\n\nAll consumers must use `orderId` as the idempotency key.\nDeliveries are **at-least-once** — duplicates are possible."
   },
-  "channels": {}
+  "servers": {
+    "rabbitmq-prod": {
+      "url": "rabbitmq.prod.internal:5672",
+      "protocol": "amqp",
+      "description": "Production AMQP broker"
+    },
+    "rabbitmq-dev": {
+      "url": "localhost:5672",
+      "protocol": "amqp",
+      "description": "Local AMQP broker (Docker Compose)"
+    }
+  },
+  "channels": {
+    "orders.created": {
+      "description": "Published immediately after POST /v1/orders. Payment has not yet been processed at this point — initial status is Pending.",
+      "publish": {
+        "operationId": "OrderCreated",
+        "summary": "Order accepted for async processing",
+        "description": "Downstream services should wait for payments.processed to confirm the order.",
+        "message": {
+          "$ref": "#/components/messages/OrderCreatedEvent"
+        }
+      }
+    },
+    "orders.cancelled": {
+      "description": "Published when DELETE /v1/orders/{orderId} cancels the order. Only Pending or Confirmed orders can be cancelled.",
+      "publish": {
+        "operationId": "OrderCancelled",
+        "summary": "Order cancelled by customer or system",
+        "message": {
+          "$ref": "#/components/messages/OrderCancelledEvent"
+        }
+      }
+    },
+    "payments.processed": {
+      "description": "Consumed from the payments service when the gateway approves the transaction. Updates the order status to Confirmed.",
+      "subscribe": {
+        "operationId": "PaymentProcessed",
+        "summary": "Payment approved by gateway",
+        "description": "Use orderId as the idempotency key when processing this event.",
+        "message": {
+          "$ref": "#/components/messages/PaymentProcessedEvent"
+        }
+      }
+    },
+    "payments.failed": {
+      "description": "Consumed from the payments service when the gateway declines the transaction. Updates the order status to PaymentFailed.",
+      "subscribe": {
+        "operationId": "PaymentFailed",
+        "summary": "Payment declined by gateway",
+        "description": "The customer may attempt a new payment or the order will be automatically cancelled.",
+        "message": {
+          "$ref": "#/components/messages/PaymentFailedEvent"
+        }
+      }
+    }
+  },
+  "components": {
+    "messages": {
+      "OrderCreatedEvent": {
+        "name": "OrderCreatedEvent",
+        "payload": {
+          "$ref": "#/components/schemas/OrderCreatedEvent"
+        }
+      },
+      "OrderCancelledEvent": {
+        "name": "OrderCancelledEvent",
+        "payload": {
+          "$ref": "#/components/schemas/OrderCancelledEvent"
+        }
+      },
+      "PaymentProcessedEvent": {
+        "name": "PaymentProcessedEvent",
+        "payload": {
+          "$ref": "#/components/schemas/PaymentProcessedEvent"
+        }
+      },
+      "PaymentFailedEvent": {
+        "name": "PaymentFailedEvent",
+        "payload": {
+          "$ref": "#/components/schemas/PaymentFailedEvent"
+        }
+      }
+    },
+    "schemas": {
+      "OrderCreatedEvent": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "orderId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Unique order identifier"
+          },
+          "customerId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Customer identifier"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderItemEventPayload"
+            },
+            "description": "Order items (snapshot at creation time)"
+          },
+          "shippingAddress": {
+            "$ref": "#/components/schemas/AddressEventPayload",
+            "description": "Shipping address provided by the customer"
+          },
+          "totalAmount": {
+            "type": "number",
+            "description": "Total calculated value (sum of subtotals)"
+          }
+        }
+      },
+      "OrderCancelledEvent": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "orderId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "customerId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "reason": {
+            "type": "string",
+            "description": "Cancellation reason: CustomerRequest | PaymentFailed | OutOfStock | SystemTimeout"
+          },
+          "cancelledAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "PaymentProcessedEvent": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "orderId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "paymentId": {
+            "type": "string",
+            "description": "Transaction ID returned by the gateway (e.g. pi_3N8XkV2eZvKYlo2C)"
+          },
+          "amount": {
+            "type": "number"
+          },
+          "gateway": {
+            "type": "string",
+            "description": "Payment gateway used: Stripe | PayPal | PagBank"
+          },
+          "processedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "PaymentFailedEvent": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "orderId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "failureCode": {
+            "type": "string",
+            "description": "Failure code: InsufficientFunds | CardDeclined | Timeout | InvalidCard | FraudSuspicion"
+          },
+          "failureReason": {
+            "type": "string",
+            "description": "Human-readable failure message for logging and support"
+          },
+          "attemptedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "OrderItemEventPayload": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "productId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "productName": {
+            "type": "string",
+            "description": "Product name at time of purchase (snapshot)"
+          },
+          "quantity": {
+            "type": "integer"
+          },
+          "unitPrice": {
+            "type": "number"
+          },
+          "subtotal": {
+            "type": "number",
+            "description": "Quantity × UnitPrice"
+          }
+        }
+      },
+      "AddressEventPayload": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "street": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string",
+            "description": "State abbreviation (e.g. SP)"
+          },
+          "zipCode": {
+            "type": "string",
+            "description": "Zip code"
+          }
+        }
+      }
+    }
+  }
 }
