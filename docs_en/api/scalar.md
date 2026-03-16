@@ -17,9 +17,10 @@ hide:
     left: 0;
     right: 0;
     bottom: 0;
-    top: 48px;
-    z-index: 1;
+    top: 0;
+    z-index: 2;
     background: #0f0f17;
+    visibility: hidden;
   }
   #scalar-frame {
     width: 100%;
