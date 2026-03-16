@@ -201,11 +201,11 @@ function initApiIframe(frameId, embedId, src) {
   const embed = document.getElementById(embedId);
 
   function adjust() {
+    // Material for MkDocs: .md-tabs lives INSIDE [data-md-component="header"],
+    // so header.offsetHeight already includes the tab bar height.
+    // Do NOT add tabs.offsetHeight separately — that would double-count it.
     const header = document.querySelector('[data-md-component="header"]');
-    const tabs   = document.querySelector('.md-tabs');
-    // Fallback: 56px header + 48px tabs (Material for MkDocs defaults)
-    const offset = (header ? header.offsetHeight : 56)
-                 + (tabs   ? tabs.offsetHeight   : 48);
+    const offset = header ? header.offsetHeight : 104;
     if (embed) {
       embed.style.top = offset + 'px';
       embed.style.visibility = 'visible';
