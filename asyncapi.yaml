@@ -6,7 +6,7 @@ info:
   description: |
     Contratos de eventos assíncronos da plataforma de pedidos e pagamentos.
 
-    ## Modelo de Comunicação
+    ## Modelo de Comunicação (atualizado)
 
     A plataforma usa **mensageria AMQP** para desacoplar o processamento de pagamentos
     do fluxo principal de pedidos. A **Orders API** publica eventos de ciclo de vida

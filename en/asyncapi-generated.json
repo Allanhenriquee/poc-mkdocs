@@ -20,7 +20,7 @@
   "defaultContentType": "application/json",
   "channels": {
     "orders.created": {
-      "description": "Publicado imediatamente após POST /v1/orders. O pagamento ainda não foi processado neste ponto — status inicial é Pending.",
+      "description": "Publicado imediatamente após POST /v1/orders. O pagamento ainda não foi processado neste ponto — status inicial é Pending (atualizado).",
       "publish": {
         "operationId": "OrderCreated",
         "summary": "Pedido aceito para processamento assíncrono",
@@ -72,7 +72,7 @@
         "properties": {
           "orderId": {
             "type": "string",
-            "description": "Identificador único do pedido",
+            "description": "Identificador único do pedido (atualizado)",
             "format": "guid"
           },
           "customerId": {

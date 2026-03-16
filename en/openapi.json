@@ -12,7 +12,7 @@
           "Pedidos"
         ],
         "summary": "Criar pedido",
-        "description": "Aceita um novo pedido para processamento assíncrono.\n\nRetorna `202 Accepted` imediatamente. O status é atualizado conforme\no pagamento é processado. Use `GET /v1/orders/{orderId}` para acompanhar.",
+        "description": "Aceita um novo pedido para processamento assíncrono (atualizado).\n\nRetorna `202 Accepted` imediatamente. O status é atualizado conforme\no pagamento é processado. Use `GET /v1/orders/{orderId}` para acompanhar.",
         "operationId": "CreateOrder",
         "requestBody": {
           "content": {
